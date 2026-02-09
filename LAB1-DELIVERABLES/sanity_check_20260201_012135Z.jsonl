@@ -1,0 +1,1 @@
+{"timestamp_utc":"2026-02-01T01:22:49Z","status":"PASS","region":"us-west-2","instance_id":"i-041e82e77928de8ef","secret_id":"arn:aws:secretsmanager:us-west-2:015195098145:secret:taaops/rds/mysql-L5neJU","db_id":"taaops-aurora-0","vpc_id":"vpc-09480ebf0ca6705b1","rds_sg_name":"taaops-rds-sg","info_checks":"false","optional_guards":"false","remote_checks":"false"}

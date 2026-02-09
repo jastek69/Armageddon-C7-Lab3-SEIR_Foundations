@@ -1,0 +1,4 @@
+CHECK: secret exists
+PASS: secret exists (taaops/lab/mysql)
+CHECK: instance has IAM instance profile
+FAIL: no IAM instance profile attached (i-0cff400cc4f896081)

@@ -1,0 +1,18 @@
+{
+  "tokyo_rds": [
+    {
+      "region": "ap-northeast-1",
+      "id": "taaops-aurora-0",
+      "az": "ap-northeast-1a",
+      "endpoint": "taaops-aurora-0.cziy8u28egkv.ap-northeast-1.rds.amazonaws.com"
+    },
+    {
+      "region": "ap-northeast-1",
+      "id": "taaops-aurora-1",
+      "az": "ap-northeast-1d",
+      "endpoint": "taaops-aurora-1.cziy8u28egkv.ap-northeast-1.rds.amazonaws.com"
+    }
+  ],
+  "saopaulo_rds": [],
+  "assertion": "PASS"
+}

@@ -1,0 +1,15 @@
+CHECK: secret exists
+PASS: secret exists (taaops/lab/mysql)
+CHECK: instance has IAM instance profile
+PASS: instance has IAM role attached (i-0cff400cc4f896081)
+CHECK: resolve instance profile name
+PASS: instance profile = taaops-armageddon-lab1-asm-role
+CHECK: resolve role name from instance profile
+PASS: role name = taaops-armageddon-lab1-asm-role
+CHECK: role has Secrets Manager actions (managed/inline)
+PASS: role allows Secrets Manager actions (taaops-armageddon-lab1-asm-role)
+INFO: managed policy -> arn:aws:iam::015195098145:policy/taaops-armageddon-lab-policy: secretsmanager:GetSecretValue secretsmanager:DescribeSecret secretsmanager:us
+INFO: inline policy actions: none
+SKIP: remote checks (set RUN_REMOTE_CHECKS=true on EC2 to run 6-8)
+SKIP: optional guardrails (set RUN_OPTIONAL_GUARDS=true to run 9-10)
+SKIP: info checks (set RUN_INFO_CHECKS=true to run additional AWS CLI queries)

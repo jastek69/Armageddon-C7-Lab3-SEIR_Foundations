@@ -1,0 +1,2 @@
+CHECK: secret exists
+FAIL: secret not found or no permission ()

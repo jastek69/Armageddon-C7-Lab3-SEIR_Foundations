@@ -1,0 +1,33 @@
+python/bedrock_invoke_test_claude.py:30:        body=json.dumps(native_request),
+python/cli_parser.py:8:e.add_argument("--out", default="evidence.json")
+python/galactus_bedrock_ir_generator_local.py:19:    evidence = json.load(open(evidence_path))
+python/galactus_bedrock_ir_generator_local.py:20:    template = open(template_path).read()
+python/galactus_bedrock_ir_generator_local.py:23:    user = f"Output MUST follow this template headings exactly:\n{template}\n\nEVIDENCE JSON:\n{json.dumps(evidence, indent=2)}"
+python/galactus_bedrock_ir_generator_local.py:37:        body=json.dumps(body)
+python/galactus_cli.py:13:# plus CDN correctness testing and controlled invalidations. It produces consistent, auditable outputs."
+python/galactus_cli.py:50:    return json.dumps(obj, indent=2, default=str)
+python/galactus_cli.py:303:    evidence = json.load(open(args.evidence_json, "r", encoding="utf-8"))
+python/galactus_cli.py:304:    template = open(args.template, "r", encoding="utf-8").read() if args.template else INCIDENT_TEMPLATE
+python/galactus_cli.py:310:        "Never output secrets (passwords, tokens, keys).\n"
+python/galactus_cli.py:318:        f"{json.dumps(evidence, indent=2)}\n"
+python/galactus_cli.py:334:        body=json.dumps(body),
+python/galactus_cli.py:340:        with open(args.out, "w", encoding="utf-8") as f:
+python/galactus_cli.py:425:    d = sub.add_parser("drift", help="Check drift between SSM Parameter Store and Secrets Manager (no password output)")
+python/galactus_cli.py:439:    b.add_argument("--out", default=None)
+python/galactus_cloudfront_log_explainer.py:35:        p = subprocess.run(cmd, check=True, capture_output=True, text=True)
+python/galactus_cloudfront_log_explainer.py:76:        return io.TextIOWrapper(gzip.open(path, "rb"), encoding="utf-8", errors="replace")
+python/galactus_cloudfront_log_explainer.py:77:    return open(path, "r", encoding="utf-8", errors="replace")
+python/galactus_cloudtrail_last_changes.py:36:    print(json.dumps({"tokyo": tokyo, "saopaulo": sp}, indent=2))
+python/galactus_cost_guardrail_estimator.py:33:    # 2) Terraform output (assumes repo root is parent of ./python)
+python/galactus_cost_guardrail_estimator.py:37:            ["terraform", "output", "-raw", "cloudfront_distribution_id"],
+python/galactus_cost_guardrail_estimator.py:39:            capture_output=True,
+python/galactus_cost_guardrail_estimator.py:47:            "or run from a Terraform-initialized repo with output cloudfront_distribution_id."
+python/galactus_residency_proof.py:33:    print(json.dumps(evidence, indent=2))
+python/galactus_tgw_corridor_proof.py:20:    print(json.dumps({"tokyo": tokyo, "saopaulo": sp}, indent=2, default=str))
+python/galactus_waf_summary.py:34:    print(json.dumps({"actions": actions, "top_ips": top_ips}, indent=2))
+python/handler.py:27:    output_key = key.replace(".json", "_translated.json")
+python/handler.py:31:        Key=output_key,
+python/handler.py:32:        Body=json.dumps(result).encode()
+python/handler.py:40:        "body": json.dumps({ "message": "Uploaded", "key": output_key })
+python/sub_implementation.py:96:    with open(args.out, "w", encoding="utf-8") as f:
+python/sub_implementation.py:97:        json.dump(evidence, f, indent=2)

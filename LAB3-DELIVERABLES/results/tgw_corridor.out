@@ -1,0 +1,250 @@
+{
+  "tokyo": {
+    "region": "ap-northeast-1",
+    "transit_gateways": [
+      {
+        "TransitGatewayId": "tgw-095ffb508be5b0ece",
+        "TransitGatewayArn": "arn:aws:ec2:ap-northeast-1:015195098145:transit-gateway/tgw-095ffb508be5b0ece",
+        "State": "available",
+        "OwnerId": "015195098145",
+        "Description": "Tokyo Transit Gateway - Data Authority Hub",
+        "CreationTime": "2026-02-08 11:15:28+00:00",
+        "Options": {
+          "AmazonSideAsn": 64512,
+          "AutoAcceptSharedAttachments": "enable",
+          "DefaultRouteTableAssociation": "enable",
+          "AssociationDefaultRouteTableId": "tgw-rtb-0816d4b6ec0d8a69b",
+          "DefaultRouteTablePropagation": "enable",
+          "PropagationDefaultRouteTableId": "tgw-rtb-0816d4b6ec0d8a69b",
+          "VpnEcmpSupport": "enable",
+          "DnsSupport": "enable",
+          "SecurityGroupReferencingSupport": "disable",
+          "MulticastSupport": "disable",
+          "EncryptionSupport": {
+            "EncryptionState": "disabled"
+          }
+        },
+        "Tags": [
+          {
+            "Key": "Region",
+            "Value": "Tokyo"
+          },
+          {
+            "Key": "Purpose",
+            "Value": "DataAuthorityHub"
+          },
+          {
+            "Key": "ManagedBy",
+            "Value": "Terraform"
+          },
+          {
+            "Key": "Name",
+            "Value": "shinjuku-tgw01"
+          }
+        ]
+      }
+    ],
+    "attachments": [
+      {
+        "TransitGatewayAttachmentId": "tgw-attach-0000f6cd2c22dfa7c",
+        "TransitGatewayId": "tgw-095ffb508be5b0ece",
+        "TransitGatewayOwnerId": "015195098145",
+        "ResourceOwnerId": "015195098145",
+        "ResourceType": "peering",
+        "ResourceId": "tgw-0361d8c3404a37f6f",
+        "State": "available",
+        "Association": {
+          "TransitGatewayRouteTableId": "tgw-rtb-0816d4b6ec0d8a69b",
+          "State": "associated"
+        },
+        "CreationTime": "2026-02-08 15:53:44+00:00",
+        "Tags": [
+          {
+            "Key": "Side",
+            "Value": "Requester"
+          },
+          {
+            "Key": "Region",
+            "Value": "Tokyo"
+          },
+          {
+            "Key": "Purpose",
+            "Value": "DataAuthority"
+          },
+          {
+            "Key": "ManagedBy",
+            "Value": "Terraform"
+          },
+          {
+            "Key": "Name",
+            "Value": "tokyo-to-sao-peering"
+          }
+        ]
+      },
+      {
+        "TransitGatewayAttachmentId": "tgw-attach-0d6431c3bdab56ae0",
+        "TransitGatewayId": "tgw-095ffb508be5b0ece",
+        "TransitGatewayOwnerId": "015195098145",
+        "ResourceOwnerId": "015195098145",
+        "ResourceType": "vpc",
+        "ResourceId": "vpc-09e5b773bcb74237c",
+        "State": "available",
+        "Association": {
+          "TransitGatewayRouteTableId": "tgw-rtb-0816d4b6ec0d8a69b",
+          "State": "associated"
+        },
+        "CreationTime": "2026-02-08 11:16:25+00:00",
+        "Tags": [
+          {
+            "Key": "Region",
+            "Value": "Tokyo"
+          },
+          {
+            "Key": "Purpose",
+            "Value": "DataAuthority"
+          },
+          {
+            "Key": "ManagedBy",
+            "Value": "Terraform"
+          },
+          {
+            "Key": "Name",
+            "Value": "tokyo-vpc-attachment"
+          }
+        ]
+      }
+    ]
+  },
+  "saopaulo": {
+    "region": "sa-east-1",
+    "transit_gateways": [
+      {
+        "TransitGatewayId": "tgw-0361d8c3404a37f6f",
+        "TransitGatewayArn": "arn:aws:ec2:sa-east-1:015195098145:transit-gateway/tgw-0361d8c3404a37f6f",
+        "State": "available",
+        "OwnerId": "015195098145",
+        "Description": "Sao Paulo Transit Gateway - Compute Spoke",
+        "CreationTime": "2026-02-08 15:37:47+00:00",
+        "Options": {
+          "AmazonSideAsn": 64512,
+          "AutoAcceptSharedAttachments": "enable",
+          "DefaultRouteTableAssociation": "enable",
+          "AssociationDefaultRouteTableId": "tgw-rtb-0e75455e270455117",
+          "DefaultRouteTablePropagation": "enable",
+          "PropagationDefaultRouteTableId": "tgw-rtb-0e75455e270455117",
+          "VpnEcmpSupport": "enable",
+          "DnsSupport": "enable",
+          "SecurityGroupReferencingSupport": "disable",
+          "MulticastSupport": "disable",
+          "EncryptionSupport": {
+            "EncryptionState": "disabled"
+          }
+        },
+        "Tags": [
+          {
+            "Key": "Project",
+            "Value": "LAB3-Armageddon"
+          },
+          {
+            "Key": "Region",
+            "Value": "SaoPaulo"
+          },
+          {
+            "Key": "Purpose",
+            "Value": "ComputeSpoke"
+          },
+          {
+            "Key": "ManagedBy",
+            "Value": "Terraform"
+          },
+          {
+            "Key": "Name",
+            "Value": "liberdade-tgw01"
+          }
+        ]
+      }
+    ],
+    "attachments": [
+      {
+        "TransitGatewayAttachmentId": "tgw-attach-0000f6cd2c22dfa7c",
+        "TransitGatewayId": "tgw-0361d8c3404a37f6f",
+        "TransitGatewayOwnerId": "015195098145",
+        "ResourceOwnerId": "015195098145",
+        "ResourceType": "peering",
+        "ResourceId": "tgw-095ffb508be5b0ece",
+        "State": "available",
+        "Association": {
+          "TransitGatewayRouteTableId": "tgw-rtb-0e75455e270455117",
+          "State": "associated"
+        },
+        "CreationTime": "2026-02-08 15:54:05+00:00",
+        "Tags": [
+          {
+            "Key": "Side",
+            "Value": "Accepter"
+          },
+          {
+            "Key": "Project",
+            "Value": "taaops"
+          },
+          {
+            "Key": "ManagedBy",
+            "Value": "Terraform"
+          },
+          {
+            "Key": "Environment",
+            "Value": "production"
+          },
+          {
+            "Key": "Region",
+            "Value": "SaoPaulo"
+          },
+          {
+            "Key": "Purpose",
+            "Value": "ComputeSpoke"
+          },
+          {
+            "Key": "Name",
+            "Value": "sao-accept-tokyo-peering"
+          }
+        ]
+      },
+      {
+        "TransitGatewayAttachmentId": "tgw-attach-0c28cf1cc545e25a0",
+        "TransitGatewayId": "tgw-0361d8c3404a37f6f",
+        "TransitGatewayOwnerId": "015195098145",
+        "ResourceOwnerId": "015195098145",
+        "ResourceType": "vpc",
+        "ResourceId": "vpc-0950a1ab90789c7b2",
+        "State": "available",
+        "Association": {
+          "TransitGatewayRouteTableId": "tgw-rtb-0e75455e270455117",
+          "State": "associated"
+        },
+        "CreationTime": "2026-02-08 15:38:25+00:00",
+        "Tags": [
+          {
+            "Key": "Project",
+            "Value": "LAB3-Armageddon"
+          },
+          {
+            "Key": "Region",
+            "Value": "SaoPaulo"
+          },
+          {
+            "Key": "Purpose",
+            "Value": "ComputeSpoke"
+          },
+          {
+            "Key": "ManagedBy",
+            "Value": "Terraform"
+          },
+          {
+            "Key": "Name",
+            "Value": "sao-vpc-attachment"
+          }
+        ]
+      }
+    ]
+  }
+}

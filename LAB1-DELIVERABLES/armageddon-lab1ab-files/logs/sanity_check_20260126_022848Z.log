@@ -1,0 +1,322 @@
+CHECK: secret exists
+PASS: secret exists (taaops/lab/mysql)
+CHECK: instance has IAM instance profile
+PASS: instance has IAM role attached (i-0cff400cc4f896081)
+CHECK: resolve instance profile name
+PASS: instance profile = taaops-armageddon-lab1-asm-role
+CHECK: resolve role name from instance profile
+PASS: role name = taaops-armageddon-lab1-asm-role
+CHECK: role has Secrets Manager actions (managed/inline)
+PASS: role allows Secrets Manager actions (taaops-armageddon-lab1-asm-role)
+INFO: managed policy -> arn:aws:iam::015195098145:policy/taaops-armageddon-lab-policy: secretsmanager:GetSecretValue secretsmanager:DescribeSecret secretsmanager:us
+INFO: inline policy actions: none
+SKIP: remote checks (set RUN_REMOTE_CHECKS=true on EC2 to run 6-8)
+SKIP: optional guardrails (set RUN_OPTIONAL_GUARDS=true to run 9-10)
+INFO: additional EC2/RDS/VPC/IAM/SG/Secrets checks
+INFO: Describe EC2 instances by Name tag (Instance ID lookup)
+[
+    "i-0cff400cc4f896081"
+]
+INFO: Describe EC2 instance profile ARN
+[
+    "arn:aws:iam::015195098145:instance-profile/taaops-armageddon-lab1-asm-role"
+]
+INFO: RDS instance status
+[
+    "available"
+]
+INFO: RDS endpoint
+[
+    {
+        "Address": "taaops-rds.cfqumkgmmcja.us-west-2.rds.amazonaws.com",
+        "Port": 3306,
+        "HostedZoneId": "Z1PVIF0B656C1W"
+    }
+]
+INFO: EC2 instance profile ARN (text output)
+arn:aws:iam::015195098145:instance-profile/taaops-armageddon-lab1-asm-role
+INFO: EC2 instance profile (json)
+{
+    "Arn": "arn:aws:iam::015195098145:instance-profile/taaops-armageddon-lab1-asm-role",
+    "Id": "AIPAQHCNSZQQWMPP4JQXN"
+}
+INFO: RDS DB subnet groups (subnet placement)
+------------------------------------------------------------
+|                  DescribeDBSubnetGroups                  |
++--------------------------------+-------------------------+
+|              Name              |           Vpc           |
++--------------------------------+-------------------------+
+|  default-vpc-02cc4e6ab47ddd464 |  vpc-02cc4e6ab47ddd464  |
++--------------------------------+-------------------------+
+||                         Subnets                        ||
+|+--------------------------------------------------------+|
+||  subnet-043ba4ad58b395079                              ||
+||  subnet-02aed63b1cef32615                              ||
+||  subnet-072fac754dba10e6a                              ||
+||  subnet-0293b6eac427698d4                              ||
+||  subnet-0f86546fc96495695                              ||
+||  subnet-0b565506dd85f09e2                              ||
+|+--------------------------------------------------------+|
+|                  DescribeDBSubnetGroups                  |
++--------------------------------+-------------------------+
+|              Name              |           Vpc           |
++--------------------------------+-------------------------+
+|  default-vpc-0426962303e3f49e9 |  vpc-0426962303e3f49e9  |
++--------------------------------+-------------------------+
+||                         Subnets                        ||
+|+--------------------------------------------------------+|
+||  subnet-081c1c803e2a79311                              ||
+||  subnet-055b499d059402362                              ||
+||  subnet-008c846d4febfb5c3                              ||
+||  subnet-0262530021098f584                              ||
+||  subnet-00f09b13fc5b596d5                              ||
+||  subnet-02426336ea4f2be6b                              ||
+|+--------------------------------------------------------+|
+|                  DescribeDBSubnetGroups                  |
++--------------------------------+-------------------------+
+|              Name              |           Vpc           |
++--------------------------------+-------------------------+
+|  default-vpc-0650bb80688d52180 |  vpc-0650bb80688d52180  |
++--------------------------------+-------------------------+
+||                         Subnets                        ||
+|+--------------------------------------------------------+|
+||  subnet-0cd5c1d1b24079f3b                              ||
+||  subnet-07136d058ea837168                              ||
+||  subnet-03c6fe3b99ebd332b                              ||
+||  subnet-0dc5fac1cee796b7d                              ||
+||  subnet-06e93cba7fdd7bcef                              ||
+||  subnet-07b202a38fe1de428                              ||
+|+--------------------------------------------------------+|
+|                  DescribeDBSubnetGroups                  |
++--------------------------------+-------------------------+
+|              Name              |           Vpc           |
++--------------------------------+-------------------------+
+|  default-vpc-06c9888b6364ea85d |  vpc-06c9888b6364ea85d  |
++--------------------------------+-------------------------+
+||                         Subnets                        ||
+|+--------------------------------------------------------+|
+||  subnet-028f73ff512739177                              ||
+||  subnet-05b11c924f995ffd3                              ||
+||  subnet-01e4edb14ba1e51fb                              ||
+||  subnet-0daa73922a1b8614b                              ||
+||  subnet-0f264b036c7b1a542                              ||
+||  subnet-09f9d2db0e4afddd4                              ||
+|+--------------------------------------------------------+|
+INFO: IAM attached role policies
+-----------------------------------------------------------------------------------------------------
+|                                     ListAttachedRolePolicies                                      |
++---------------------------------------------------------------------------------------------------+
+||                                        AttachedPolicies                                         ||
+|+----------------------------------------------------------------+--------------------------------+|
+||                            PolicyArn                           |          PolicyName            ||
+|+----------------------------------------------------------------+--------------------------------+|
+||  arn:aws:iam::015195098145:policy/taaops-armageddon-lab-policy |  taaops-armageddon-lab-policy  ||
+||  arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy           |  CloudWatchAgentServerPolicy   ||
+||  arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore          |  AmazonSSMManagedInstanceCore  ||
+|+----------------------------------------------------------------+--------------------------------+|
+INFO: IAM managed policy document (SecretsManagerReadWrite)
+{
+    "PolicyVersion": {
+        "Document": {
+            "Version": "2012-10-17",
+            "Statement": [
+                {
+                    "Action": [
+                        "secretsmanager:*",
+                        "cloudformation:CreateChangeSet",
+                        "cloudformation:DescribeChangeSet",
+                        "cloudformation:DescribeStackResource",
+                        "cloudformation:DescribeStacks",
+                        "cloudformation:ExecuteChangeSet",
+                        "ec2:DescribeSecurityGroups",
+                        "ec2:DescribeSubnets",
+                        "ec2:DescribeVpcs",
+                        "kms:DescribeKey",
+                        "kms:ListAliases",
+                        "kms:ListKeys",
+                        "lambda:ListFunctions",
+                        "rds:DescribeDBInstances",
+                        "tag:GetResources"
+                    ],
+                    "Effect": "Allow",
+                    "Resource": "*"
+                },
+                {
+                    "Action": [
+                        "lambda:AddPermission",
+                        "lambda:CreateFunction",
+                        "lambda:GetFunction",
+                        "lambda:InvokeFunction",
+                        "lambda:UpdateFunctionConfiguration"
+                    ],
+                    "Effect": "Allow",
+                    "Resource": "arn:aws:lambda:*:*:function:SecretsManager*"
+                },
+                {
+                    "Action": [
+                        "serverlessrepo:CreateCloudFormationChangeSet"
+                    ],
+                    "Effect": "Allow",
+                    "Resource": "arn:aws:serverlessrepo:*:*:applications/SecretsManager*"
+                },
+                {
+                    "Action": [
+                        "s3:GetObject"
+                    ],
+                    "Effect": "Allow",
+                    "Resource": "arn:aws:s3:::awsserverlessrepo-changesets*"
+                }
+            ]
+        },
+        "VersionId": "v1",
+        "IsDefaultVersion": false,
+        "CreateDate": "2018-04-04T18:05:29+00:00"
+    }
+}
+INFO: IAM instance profile -> role name
+taaops-armageddon-lab1-asm-role
+INFO: List all security groups
+-----------------------------------------------------------------------
+|                       DescribeSecurityGroups                        |
++----------------------+--------------------+-------------------------+
+|        GroupId       |       Name         |          VpcId          |
++----------------------+--------------------+-------------------------+
+|  sg-093e502347ee5a0fa|  ssm-endpoints-sg  |  vpc-0650bb80688d52180  |
+|  sg-0d475702b19ee4afe|  taaops-lambda-sg  |  vpc-0650bb80688d52180  |
+|  sg-077086116d399345a|  default           |  vpc-03254b05d4a4e80f8  |
+|  sg-0a75d3099e408f86c|  taaops-ec2-sg     |  vpc-0650bb80688d52180  |
+|  sg-02836f3d088e014e2|  taaops-rds-sg     |  vpc-0650bb80688d52180  |
+|  sg-070bfb0a2e3a0b673|  default           |  vpc-0650bb80688d52180  |
++----------------------+--------------------+-------------------------+
+INFO: RDS security group rules (filtered)
+[
+    [
+        {
+            "IpProtocol": "tcp",
+            "FromPort": 3306,
+            "ToPort": 3306,
+            "UserIdGroupPairs": [
+                {
+                    "Description": "RDS 3306",
+                    "UserId": "015195098145",
+                    "GroupId": "sg-0a75d3099e408f86c"
+                }
+            ],
+            "IpRanges": [],
+            "Ipv6Ranges": [],
+            "PrefixListIds": []
+        }
+    ]
+]
+INFO: RDS security groups attached to DB instance
+--------------------------
+|   DescribeDBInstances  |
++------------------------+
+|  sg-02836f3d088e014e2  |
++------------------------+
+INFO: List Secrets Manager secrets
+----------------------------------------------------------------------------------------------
+|                                         ListSecrets                                        |
++----------+---------------------------------------------------------------------------------+
+|  ARN     |  arn:aws:secretsmanager:us-west-2:015195098145:secret:taaops/lab/mysql-BQUTC9   |
+|  Name    |  taaops/lab/mysql                                                               |
+|  Rotation|  True                                                                           |
++----------+---------------------------------------------------------------------------------+
+INFO: Get secret value (lab)
+{
+    "ARN": "arn:aws:secretsmanager:us-west-2:015195098145:secret:taaops/lab/mysql-BQUTC9",
+    "Name": "taaops/lab/mysql",
+    "VersionId": "71451640-5048-4d16-a089-0e5d401fa864",
+    "SecretString": "{\"username\":\"admin\",\"password\":\"armagedd0n\",\"engine\":\"mysql\",\"host\":\"taaops-rds.cfqumkgmmcja.us-west-2.rds.amazonaws.com\",\"port\":3306,\"dbInstanceIdentifier\":\"taaops-rds\"}",
+    "VersionStages": [
+        "AWSCURRENT"
+    ],
+    "CreatedDate": "2026-01-19T20:51:54.222000-08:00"
+}
+INFO: Describe secret ARN
+arn:aws:secretsmanager:us-west-2:015195098145:secret:taaops/lab/mysql-BQUTC9
+INFO: Get secret resource policy
+{
+    "ARN": "arn:aws:secretsmanager:us-west-2:015195098145:secret:taaops/lab/mysql-BQUTC9",
+    "Name": "taaops/lab/mysql"
+}
+INFO: WARNING - get secret value (lab-only)
+{"username":"admin","password":"armagedd0n","engine":"mysql","host":"taaops-rds.cfqumkgmmcja.us-west-2.rds.amazonaws.com","port":3306,"dbInstanceIdentifier":"taaops-rds"}
+INFO: Parameter Store values
+{
+    "Parameters": [
+        {
+            "Name": "/lab/db/endpoint",
+            "Type": "SecureString",
+            "Value": "taaops-rds.cfqumkgmmcja.us-west-2.rds.amazonaws.com",
+            "Version": 1,
+            "LastModifiedDate": "2026-01-19T19:44:23.503000-08:00",
+            "ARN": "arn:aws:ssm:us-west-2:015195098145:parameter/lab/db/endpoint",
+            "DataType": "text"
+        },
+        {
+            "Name": "/lab/db/name",
+            "Type": "SecureString",
+            "Value": "labdb",
+            "Version": 2,
+            "LastModifiedDate": "2026-01-20T00:09:53.449000-08:00",
+            "ARN": "arn:aws:ssm:us-west-2:015195098145:parameter/lab/db/name",
+            "DataType": "text"
+        },
+        {
+            "Name": "/lab/db/port",
+            "Type": "SecureString",
+            "Value": "3306",
+            "Version": 1,
+            "LastModifiedDate": "2026-01-19T19:46:54.724000-08:00",
+            "ARN": "arn:aws:ssm:us-west-2:015195098145:parameter/lab/db/port",
+            "DataType": "text"
+        }
+    ],
+    "InvalidParameters": []
+}
+INFO: CloudWatch log group (ASM rotation lambda)
+/aws/lambda/SecretsManagertaaops-lab1-asm-rotation
+INFO: CloudWatch log group exists (ASM rotation lambda)
+
+An error occurred (InvalidParameterException) when calling the DescribeLogGroups operation: 1 validation error detected: Value 'C:/Program Files/Git/aws/lambda/SecretsManagertaaops-lab1-asm-rotation' at 'logGroupNamePrefix' failed to satisfy constraint: Member must satisfy regular expression pattern: [\.\-_/#A-Za-z0-9]+
+INFO: CloudWatch alarm status (rdsapp-db-errors-alarm)
+--------------------------------------------------------------------------
+|                             DescribeAlarms                             |
++---------------------------------------+--------------------------------+
+|                 Name                  |             State              |
++---------------------------------------+--------------------------------+
+|  rdsapp-db-errors-alarm               |  INSUFFICIENT_DATA             |
++---------------------------------------+--------------------------------+
+||                                Actions                               ||
+|+----------------------------------------------------------------------+|
+||  arn:aws:sns:us-west-2:015195098145:Default_CloudWatch_Alarms_Topic  ||
+|+----------------------------------------------------------------------+|
+INFO: CloudWatch metrics (Lab/RDSApp)
+{
+    "Metrics": [
+        {
+            "Namespace": "Lab/RDSApp",
+            "MetricName": "RdsAppDbErrors",
+            "Dimensions": []
+        }
+    ]
+}
+INFO: RDS summary table
+-------------------------------------------------------------
+|                    DescribeDBInstances                    |
++------------+---------+---------+--------------------------+
+|     DB     | Engine  | Public  |           Vpc            |
++------------+---------+---------+--------------------------+
+|  taaops-rds|  mysql  |  False  |  vpc-0650bb80688d52180   |
++------------+---------+---------+--------------------------+
+INFO: RDS endpoint/port table
+---------------------------------------------------------------------
+|                        DescribeDBInstances                        |
++----------+--------------------------------------------------------+
+|  DB      |  taaops-rds                                            |
+|  Endpoint|  taaops-rds.cfqumkgmmcja.us-west-2.rds.amazonaws.com   |
+|  Port    |  3306                                                  |
+|  Public  |  False                                                 |
+|  VPC     |  vpc-0650bb80688d52180                                 |
++----------+--------------------------------------------------------+

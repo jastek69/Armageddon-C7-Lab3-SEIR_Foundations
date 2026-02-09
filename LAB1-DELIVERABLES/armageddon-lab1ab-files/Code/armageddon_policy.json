@@ -1,0 +1,35 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "ReadSpecificSecret",
+            "Effect": "Allow",
+            "Action": [
+                "secretsmanager:GetSecretValue",
+                "secretsmanager:DescribeSecret"
+            ],
+            "Resource": "arn:aws:secretsmanager:us-west-2:015195098145:secret:taaops/lab/mysql*"
+        },
+        {
+            "Sid": "DecryptOnlyViaSecretsManager",
+            "Effect": "Allow",
+            "Action": "kms:Decrypt",
+            "Resource": "*",
+            "Condition": {
+                "StringEquals": {
+                    "kms:ViaService": "secretsmanager.us-west-2.amazonaws.com"
+                }
+            }
+        },
+        {
+            "Sid": "ReadLabDbParameters",
+            "Effect": "Allow",
+            "Action": [
+                "ssm:GetParameter",
+                "ssm:GetParameters",
+                "ssm:GetParametersByPath"
+            ],
+            "Resource": "arn:aws:ssm:us-west-2:015195098145:parameter/lab/db/*"
+        }
+    ]
+}

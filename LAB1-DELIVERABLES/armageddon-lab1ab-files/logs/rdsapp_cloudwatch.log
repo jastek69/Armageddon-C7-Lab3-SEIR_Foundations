@@ -1,0 +1,241 @@
+/usr/local/lib/python3.9/site-packages/boto3/compat.py:89: PythonDeprecationWarning: Boto3 will no longer support Python 3.9 starting April 29, 2026. To continue receiving service updates, bug fixes, and security updates please upgrade to Python 3.10 or later. More information can be found here: https://aws.amazon.com/blogs/developer/python-support-policy-updates-for-aws-sdks-and-tools/
+  warnings.warn(warning, PythonDeprecationWarning)
+ * Serving Flask app 'app'
+ * Debug mode: off	WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:80
+ * Running on http://10.233.1.160:80	Press CTRL+C to quit	3.132.23.201 - - [25/Jan/2026 06:51:58] code 400, message Bad request version ('À\x14À')	3.132.23.201 - - [25/Jan/2026 06:51:58] "\x16\x03\x01\x00{\x01\x00\x00w\x03\x03È;b\x13Þ\x08õ\x0føÐ¸¨º\x04èu\x97Á;Q¸\x10Ö\x09b§Æc¿ \x0bú\x00\x00\x1aÀ/À+À\x11À\x07À\x13À\x09À\x14À" HTTPStatus.BAD_REQUEST -	204.76.203.8 - - [25/Jan/2026 07:03:43] "GET /geoserver/wfs?request=ListStoredQueries&service=wfs&version=2.0.0 HTTP/1.1" 404 -	45.41.169.10 - - [25/Jan/2026 07:36:06] "GET /.env HTTP/1.1" 404 -	45.41.169.10 - - [25/Jan/2026 07:36:07] "POST / HTTP/1.1" 405 -	199.45.154.114 - - [25/Jan/2026 07:41:48] code 400, message Bad request version ('À\x14À')	199.45.154.114 - - [25/Jan/2026 07:41:48] "\x16\x03\x01\x00î\x01\x00\x00ê\x03\x03ô\x92j\x09úCüx\x08\x9b\x1d\x1b(´jm×ìe\x0f¯·¾ÿqê±Z\x019ô7 \x9a°\x18?: \x81ìg­/Sø\x95\\\x16\x1daÿ\x17v\x8c\x0f\x0eàúm\\Má\x0bY\x00&Ì¨Ì©À/À0À+À,À\x13À\x09À\x14À" HTTPStatus.BAD_REQUEST -	199.45.154.114 - - [25/Jan/2026 07:41:50] "GET / HTTP/1.1" 200 -	199.45.154.114 - - [25/Jan/2026 07:41:52] code 505, message Invalid HTTP version (2.0)	199.45.154.114 - - [25/Jan/2026 07:41:52] "PRI * HTTP/2.0" HTTPStatus.HTTP_VERSION_NOT_SUPPORTED -	199.45.154.114 - - [25/Jan/2026 07:41:54] "GET /favicon.ico HTTP/1.1" 404 -	199.45.154.114 - - [25/Jan/2026 07:42:09] code 400, message Bad request version ('À\x14À')	199.45.154.114 - - [25/Jan/2026 07:42:09] "\x16\x03\x01\x00î\x01\x00\x00ê\x03\x03!õ\x91H®\x820\x85 \x88ã¡\x0d \x87\x11\x7f]ÁQè;¡Sqn"-m^:M F£\x1b\x08l\x84¯"=\x807\x19\x1bè^è6$\x92D{»ïà\x08x\x08Ûà ¬Ú\x00&Ì¨Ì©À/À0À+À,À\x13À\x09À\x14À" HTTPStatus.BAD_REQUEST -	199.45.154.114 - - [25/Jan/2026 07:42:10] "GET /wiki HTTP/1.1" 404 -	190.107.244.151 - - [25/Jan/2026 08:07:15] "GET / HTTP/1.1" 200 -	101.32.218.31 - - [25/Jan/2026 08:14:38] "HEAD /Core/Skin/Login.aspx HTTP/1.1" 404 -	193.25.167.39 - - [25/Jan/2026 08:27:18] "GET /.env HTTP/1.1" 404 -	193.25.167.39 - - [25/Jan/2026 08:27:18] "POST / HTTP/1.1" 405 -	204.76.203.8 - - [25/Jan/2026 08:36:29] "GET /geoserver/wfs?request=ListStoredQueries&service=wfs&version=2.0.0 HTTP/1.1" 404 -	130.12.180.122 - - [25/Jan/2026 08:38:57] "CONNECT 82.29.53.106:800 HTTP/1.1" 404 -	146.190.255.95 - - [25/Jan/2026 09:03:28] "GET / HTTP/1.1" 200 -	146.190.255.95 - - [25/Jan/2026 09:03:28] "GET /favicon.ico HTTP/1.1" 404 -	/usr/local/lib/python3.9/site-packages/boto3/compat.py:89: PythonDeprecationWarning: Boto3 will no longer support Python 3.9 starting April 29, 2026. To continue receiving service updates, bug fixes, and security updates please upgrade to Python 3.10 or later. More information can be found here: https://aws.amazon.com/blogs/developer/python-support-policy-updates-for-aws-sdks-and-tools/
+  warnings.warn(warning, PythonDeprecationWarning)
+ * Serving Flask app 'app'
+ * Debug mode: off	WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:80
+ * Running on http://10.233.1.160:80	Press CTRL+C to quit	/usr/local/lib/python3.9/site-packages/boto3/compat.py:89: PythonDeprecationWarning: Boto3 will no longer support Python 3.9 starting April 29, 2026. To continue receiving service updates, bug fixes, and security updates please upgrade to Python 3.10 or later. More information can be found here: https://aws.amazon.com/blogs/developer/python-support-policy-updates-for-aws-sdks-and-tools/
+  warnings.warn(warning, PythonDeprecationWarning)
+ * Serving Flask app 'app'
+ * Debug mode: off	WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:80
+ * Running on http://127.0.0.1:80	Press CTRL+C to quit	130.12.180.122 - - [25/Jan/2026 09:32:10] "CONNECT 82.29.53.106:800 HTTP/1.1" 404 -	130.12.180.122 - - [25/Jan/2026 09:32:16] "CONNECT 82.29.53.106:800 HTTP/1.1" 404 -
+80.82.70.133 - - [25/Jan/2026 10:33:34] code 400, message Bad request version ("¯nãY»bhlÿ(=':©\x82ÙoÈ¢×\x93\x98´ï\x80å¹\x90\x00(À")	80.82.70.133 - - [25/Jan/2026 10:33:34] "\x16\x03\x02\x01o\x01\x00\x01k\x03\x02RHÅ\x1a#÷:Nßâ´\x82/ÿ\x09T\x9f§Äy°hÆ\x13\x8c¤\x1c="á\x1a\x98 \x84´,\x85¯nãY»bhlÿ(=':©\x82ÙoÈ¢×\x93\x98´ï\x80å¹\x90\x00(À" HTTPStatus.BAD_REQUEST -	130.12.180.122 - - [25/Jan/2026 10:40:30] "CONNECT 82.29.53.106:800 HTTP/1.1" 404 -	43.129.169.161 - - [25/Jan/2026 11:05:28] "HEAD /Core/Skin/Login.aspx HTTP/1.1" 404 -	ERROR: test error for metric filter	176.32.195.85 - - [25/Jan/2026 11:46:11] "GET / HTTP/1.0" 200 -	ERROR: test error for metric filter	ERROR: test error for metric filter	204.76.203.8 - - [25/Jan/2026 12:40:58] "GET /geoserver/wfs?request=ListStoredQueries&service=wfs&version=2.0.0 HTTP/1.1" 404 -	43.129.169.161 - - [25/Jan/2026 12:42:50] "HEAD /Core/Skin/Login.aspx HTTP/1.1" 404 -	ERROR: test error for metric filter	ERROR: test error for metric filter
+31.220.54.66 - - [25/Jan/2026 13:28:32] "GET / HTTP/1.1" 200 -	178.175.167.144 - - [25/Jan/2026 13:31:15] "GET / HTTP/1.1" 200 -	178.175.167.144 - - [25/Jan/2026 13:31:20] "GET /.env HTTP/1.1" 404 -	135.237.126.135 - - [25/Jan/2026 13:39:48] "GET /druid/index.html HTTP/1.1" 404 -	ERROR: test error for metric filter	ERROR: test error for metric filter	45.230.66.103 - - [25/Jan/2026 14:15:53] "POST /HNAP1/ HTTP/1.0" 404 -	ERROR: test error for metric filter	204.76.203.8 - - [25/Jan/2026 14:19:23] "GET /geoserver/wfs?request=ListStoredQueries&service=wfs&version=2.0.0 HTTP/1.1" 404 -	43.129.169.161 - - [25/Jan/2026 14:20:06] "HEAD /Core/Skin/Login.aspx HTTP/1.1" 404 -	194.146.14.92 - - [25/Jan/2026 14:29:28] "GET / HTTP/1.1" 200 -	194.146.14.92 - - [25/Jan/2026 14:29:29] "GET /favicon.ico HTTP/1.1" 404 -	194.146.14.92 - - [25/Jan/2026 14:29:34] "GET / HTTP/1.1" 200 -	194.146.14.92 - - [25/Jan/2026 14:29:38] "GET /init HTTP/1.1" 200 -	194.146.14.92 - - [25/Jan/2026 14:29:46] "GET /init HTTP/1.1" 200 -	194.146.14.92 - - [25/Jan/2026 14:30:30] "GET /add?note=helloworld HTTP/1.1" 200 -	194.146.14.92 - - [25/Jan/2026 14:30:36] "GET /add?note=helloworld HTTP/1.1" 200 -	194.146.14.92 - - [25/Jan/2026 14:30:46] "GET /init HTTP/1.1" 200 -	[2026-01-25 14:35:14,516] ERROR in app: Exception on /init [GET]	Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/pymysql/connections.py", line 661, in connect
+    sock = socket.create_connection(
+  File "/usr/lib64/python3.9/socket.py", line 856, in create_connection
+    raise err
+  File "/usr/lib64/python3.9/socket.py", line 844, in create_connection
+    sock.connect(sa)	ConnectionRefusedError: [Errno 111] Connection refused
+	During handling of the above exception, another exception occurred:
+	Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/opt/rdsapp/app.py", line 54, in init_db
+    conn = pymysql.connect(host=host, user=user, password=password, port=port, autocommit=True)
+  File "/usr/local/lib/python3.9/site-packages/pymysql/connections.py", line 365, in __init__
+    self.connect()
+  File "/usr/local/lib/python3.9/site-packages/pymysql/connections.py", line 723, in connect
+    raise exc	pymysql.err.OperationalError: (2003, "Can't connect to MySQL server on 'taaops-rds.cfqumkgmmcja.us-west-2.rds.amazonaws.com' ([Errno 111] Connection refused)")	194.146.14.92 - - [25/Jan/2026 14:35:14] "GET /init HTTP/1.1" 500 -	[2026-01-25 14:35:20,303] ERROR in app: Exception on /init [GET]	Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/pymysql/connections.py", line 661, in connect
+    sock = socket.create_connection(
+  File "/usr/lib64/python3.9/socket.py", line 856, in create_connection
+    raise err
+  File "/usr/lib64/python3.9/socket.py", line 844, in create_connection
+    sock.connect(sa)	ConnectionRefusedError: [Errno 111] Connection refused
+	During handling of the above exception, another exception occurred:
+	Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/opt/rdsapp/app.py", line 54, in init_db
+    conn = pymysql.connect(host=host, user=user, password=password, port=port, autocommit=True)
+  File "/usr/local/lib/python3.9/site-packages/pymysql/connections.py", line 365, in __init__
+    self.connect()
+  File "/usr/local/lib/python3.9/site-packages/pymysql/connections.py", line 723, in connect
+    raise exc	pymysql.err.OperationalError: (2003, "Can't connect to MySQL server on 'taaops-rds.cfqumkgmmcja.us-west-2.rds.amazonaws.com' ([Errno 111] Connection refused)")	194.146.14.92 - - [25/Jan/2026 14:35:20] "GET /init HTTP/1.1" 500 -	[2026-01-25 14:35:26,425] ERROR in app: Exception on /init [GET]	Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/pymysql/connections.py", line 661, in connect
+    sock = socket.create_connection(
+  File "/usr/lib64/python3.9/socket.py", line 856, in create_connection
+    raise err
+  File "/usr/lib64/python3.9/socket.py", line 844, in create_connection
+    sock.connect(sa)	ConnectionRefusedError: [Errno 111] Connection refused
+	During handling of the above exception, another exception occurred:
+	Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/opt/rdsapp/app.py", line 54, in init_db
+    conn = pymysql.connect(host=host, user=user, password=password, port=port, autocommit=True)
+  File "/usr/local/lib/python3.9/site-packages/pymysql/connections.py", line 365, in __init__
+    self.connect()
+  File "/usr/local/lib/python3.9/site-packages/pymysql/connections.py", line 723, in connect
+    raise exc	pymysql.err.OperationalError: (2003, "Can't connect to MySQL server on 'taaops-rds.cfqumkgmmcja.us-west-2.rds.amazonaws.com' ([Errno 111] Connection refused)")	194.146.14.92 - - [25/Jan/2026 14:35:26] "GET /init HTTP/1.1" 500 -	186.82.87.87 - - [25/Jan/2026 14:37:35] "GET / HTTP/1.1" 200 -	[2026-01-25 14:39:25,307] ERROR in app: Exception on /init [GET]	Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/pymysql/connections.py", line 661, in connect
+    sock = socket.create_connection(
+  File "/usr/lib64/python3.9/socket.py", line 856, in create_connection
+    raise err
+  File "/usr/lib64/python3.9/socket.py", line 844, in create_connection
+    sock.connect(sa)	socket.timeout: timed out
+	During handling of the above exception, another exception occurred:
+	Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/opt/rdsapp/app.py", line 54, in init_db
+    conn = pymysql.connect(host=host, user=user, password=password, port=port, autocommit=True)
+  File "/usr/local/lib/python3.9/site-packages/pymysql/connections.py", line 365, in __init__
+    self.connect()
+  File "/usr/local/lib/python3.9/site-packages/pymysql/connections.py", line 723, in connect
+    raise exc	pymysql.err.OperationalError: (2003, "Can't connect to MySQL server on 'taaops-rds.cfqumkgmmcja.us-west-2.rds.amazonaws.com' (timed out)")	194.146.14.92 - - [25/Jan/2026 14:39:25] "GET /init HTTP/1.1" 500 -	[2026-01-25 14:39:29,890] ERROR in app: Exception on /init [GET]	Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/pymysql/connections.py", line 661, in connect
+    sock = socket.create_connection(
+  File "/usr/lib64/python3.9/socket.py", line 856, in create_connection
+    raise err
+  File "/usr/lib64/python3.9/socket.py", line 844, in create_connection
+    sock.connect(sa)	socket.timeout: timed out
+	During handling of the above exception, another exception occurred:
+	Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/opt/rdsapp/app.py", line 54, in init_db
+    conn = pymysql.connect(host=host, user=user, password=password, port=port, autocommit=True)
+  File "/usr/local/lib/python3.9/site-packages/pymysql/connections.py", line 365, in __init__
+    self.connect()
+  File "/usr/local/lib/python3.9/site-packages/pymysql/connections.py", line 723, in connect
+    raise exc	pymysql.err.OperationalError: (2003, "Can't connect to MySQL server on 'taaops-rds.cfqumkgmmcja.us-west-2.rds.amazonaws.com' (timed out)")	194.146.14.92 - - [25/Jan/2026 14:39:29] "GET /init HTTP/1.1" 500 -	[2026-01-25 14:40:33,067] ERROR in app: Exception on /init [GET]	Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/pymysql/connections.py", line 661, in connect
+    sock = socket.create_connection(
+  File "/usr/lib64/python3.9/socket.py", line 856, in create_connection
+    raise err
+  File "/usr/lib64/python3.9/socket.py", line 844, in create_connection
+    sock.connect(sa)	socket.timeout: timed out
+	During handling of the above exception, another exception occurred:
+	Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/opt/rdsapp/app.py", line 54, in init_db
+    conn = pymysql.connect(host=host, user=user, password=password, port=port, autocommit=True)
+  File "/usr/local/lib/python3.9/site-packages/pymysql/connections.py", line 365, in __init__
+    self.connect()
+  File "/usr/local/lib/python3.9/site-packages/pymysql/connections.py", line 723, in connect
+    raise exc	pymysql.err.OperationalError: (2003, "Can't connect to MySQL server on 'taaops-rds.cfqumkgmmcja.us-west-2.rds.amazonaws.com' (timed out)")	194.146.14.92 - - [25/Jan/2026 14:40:33] "GET /init HTTP/1.1" 500 -	[2026-01-25 14:40:37,727] ERROR in app: Exception on /init [GET]	Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/pymysql/connections.py", line 661, in connect
+    sock = socket.create_connection(
+  File "/usr/lib64/python3.9/socket.py", line 856, in create_connection
+    raise err
+  File "/usr/lib64/python3.9/socket.py", line 844, in create_connection
+    sock.connect(sa)	socket.timeout: timed out
+	During handling of the above exception, another exception occurred:
+	Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/opt/rdsapp/app.py", line 54, in init_db
+    conn = pymysql.connect(host=host, user=user, password=password, port=port, autocommit=True)
+  File "/usr/local/lib/python3.9/site-packages/pymysql/connections.py", line 365, in __init__
+    self.connect()
+  File "/usr/local/lib/python3.9/site-packages/pymysql/connections.py", line 723, in connect
+    raise exc	pymysql.err.OperationalError: (2003, "Can't connect to MySQL server on 'taaops-rds.cfqumkgmmcja.us-west-2.rds.amazonaws.com' (timed out)")	194.146.14.92 - - [25/Jan/2026 14:40:37] "GET /init HTTP/1.1" 500 -	[2026-01-25 14:40:44,011] ERROR in app: Exception on /init [GET]	Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/pymysql/connections.py", line 661, in connect
+    sock = socket.create_connection(
+  File "/usr/lib64/python3.9/socket.py", line 856, in create_connection
+    raise err
+  File "/usr/lib64/python3.9/socket.py", line 844, in create_connection
+    sock.connect(sa)	socket.timeout: timed out
+	During handling of the above exception, another exception occurred:
+	Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/opt/rdsapp/app.py", line 54, in init_db
+    conn = pymysql.connect(host=host, user=user, password=password, port=port, autocommit=True)
+  File "/usr/local/lib/python3.9/site-packages/pymysql/connections.py", line 365, in __init__
+    self.connect()
+  File "/usr/local/lib/python3.9/site-packages/pymysql/connections.py", line 723, in connect
+    raise exc	pymysql.err.OperationalError: (2003, "Can't connect to MySQL server on 'taaops-rds.cfqumkgmmcja.us-west-2.rds.amazonaws.com' (timed out)")	194.146.14.92 - - [25/Jan/2026 14:40:44] "GET /init HTTP/1.1" 500 -	[2026-01-25 14:40:48,686] ERROR in app: Exception on /init [GET]	Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/pymysql/connections.py", line 661, in connect
+    sock = socket.create_connection(
+  File "/usr/lib64/python3.9/socket.py", line 856, in create_connection
+    raise err
+  File "/usr/lib64/python3.9/socket.py", line 844, in create_connection
+    sock.connect(sa)	socket.timeout: timed out
+	During handling of the above exception, another exception occurred:
+	Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/opt/rdsapp/app.py", line 54, in init_db
+    conn = pymysql.connect(host=host, user=user, password=password, port=port, autocommit=True)
+  File "/usr/local/lib/python3.9/site-packages/pymysql/connections.py", line 365, in __init__
+    self.connect()
+  File "/usr/local/lib/python3.9/site-packages/pymysql/connections.py", line 723, in connect
+    raise exc	pymysql.err.OperationalError: (2003, "Can't connect to MySQL server on 'taaops-rds.cfqumkgmmcja.us-west-2.rds.amazonaws.com' (timed out)")	194.146.14.92 - - [25/Jan/2026 14:40:48] "GET /init HTTP/1.1" 500 -	[2026-01-25 14:42:11,788] ERROR in app: Exception on /init [GET]	Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/pymysql/connections.py", line 661, in connect
+    sock = socket.create_connection(
+  File "/usr/lib64/python3.9/socket.py", line 856, in create_connection
+    raise err
+  File "/usr/lib64/python3.9/socket.py", line 844, in create_connection
+    sock.connect(sa)	ConnectionRefusedError: [Errno 111] Connection refused
+	During handling of the above exception, another exception occurred:
+	Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/opt/rdsapp/app.py", line 54, in init_db
+    conn = pymysql.connect(host=host, user=user, password=password, port=port, autocommit=True)
+  File "/usr/local/lib/python3.9/site-packages/pymysql/connections.py", line 365, in __init__
+    self.connect()
+  File "/usr/local/lib/python3.9/site-packages/pymysql/connections.py", line 723, in connect
+    raise exc	pymysql.err.OperationalError: (2003, "Can't connect to MySQL server on 'taaops-rds.cfqumkgmmcja.us-west-2.rds.amazonaws.com' ([Errno 111] Connection refused)")	194.146.14.92 - - [25/Jan/2026 14:42:11] "GET /init HTTP/1.1" 500 -	194.146.14.92 - - [25/Jan/2026 14:42:18] "GET /init HTTP/1.1" 200 -	194.146.14.92 - - [25/Jan/2026 14:42:55] "GET /init HTTP/1.1" 200 -

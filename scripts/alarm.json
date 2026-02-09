@@ -1,0 +1,14 @@
+{
+  "AlarmName": "manual-test-alarm",
+  "AlarmDescription": "Manual test to trigger incident report pipeline",
+  "NewStateValue": "ALARM",
+  "OldStateValue": "OK",
+  "StateChangeTime": "2026-02-01T12:00:00Z",
+  "MetricName": "RdsAppDbErrors",
+  "Namespace": "Lab/RDSApp",
+  "Statistic": "Sum",
+  "Period": 60,
+  "EvaluationPeriods": 1,
+  "Threshold": 1,
+  "ComparisonOperator": "GreaterThanOrEqualToThreshold"
+}

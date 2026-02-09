@@ -1,0 +1,827 @@
+
+===== Gate: secrets_and_role =====
+Timestamp (UTC): 2026-01-25T02:13:04Z
+Region: us-west-2
+Instance ID: i-0cff400cc4f896081
+Secret ID: taaops/lab/mysql
+
+=== SEIR Gate: Secrets + EC2 Role Verification ===
+Timestamp (UTC): 2026-01-25T02:13:25Z
+Region:          us-west-2
+Instance ID:     i-0cff400cc4f896081
+Secret ID:       taaops/lab/mysql
+Resolved Role:   taaops-armageddon-lab1-asm-role
+Caller ARN:      arn:aws:iam::015195098145:user/AWSCLI
+-----------------------------------------------
+PASS: aws sts get-caller-identity succeeded (credentials OK).
+PASS: secret exists and is describable (taaops/lab/mysql).
+PASS: secret rotation enabled (taaops/lab/mysql).
+PASS: no resource policy found (OK) or not applicable (taaops/lab/mysql).
+PASS: instance has IAM instance profile attached (i-0cff400cc4f896081).
+PASS: resolved instance profile -> role (taaops-armageddon-lab1-asm-role -> taaops-armageddon-lab1-asm-role).
+PASS: resolved role matches EXPECTED_ROLE_NAME (taaops-armageddon-lab1-asm-role).
+INFO: on-instance checks skipped (not running as expected role on EC2).
+
+Warnings:
+  - WARN: current caller ARN is not assumed-role/taaops-armageddon-lab1-asm-role (you may be running off-instance).
+
+RESULT: PASS
+===============================================
+
+Wrote: gate_result.json
+
+===== Gate: network_db =====
+Timestamp (UTC): 2026-01-25T02:17:38Z
+Region: us-west-2
+Instance ID: i-0cff400cc4f896081
+DB ID: taaops-rds
+
+=== SEIR Gate: Network + RDS Verification ===
+Timestamp (UTC): 2026-01-25T02:19:06Z
+Region:          us-west-2
+EC2 Instance:    i-0cff400cc4f896081
+RDS Instance:    taaops-rds
+Engine:          mysql
+DB Port:         3306
+Caller ARN:      arn:aws:iam::015195098145:user/AWSCLI
+-------------------------------------------
+PASS: aws sts get-caller-identity succeeded (credentials OK).
+PASS: RDS instance exists (taaops-rds).
+PASS: RDS is not publicly accessible (PubliclyAccessible=False).
+INFO: using DB_PORT override = 3306.
+PASS: EC2 security groups resolved (i-0cff400cc4f896081): sg-0a75d3099e408f86c
+PASS: RDS security groups resolved (taaops-rds): sg-02836f3d088e014e2
+PASS: RDS SG allows DB port 3306 from EC2 SG (SG-to-SG ingress present).
+INFO: DB subnet group (default-vpc-0650bb80688d52180) subnets: subnet-0cd5c1d1b24079f3b	subnet-07136d058ea837168	subnet-03c6fe3b99ebd332b	subnet-0dc5fac1cee796b7d	subnet-06e93cba7fdd7bcef	subnet-07b202a38fe1de428
+PASS: subnet subnet-03c6fe3b99ebd332b shows no IGW route (private check OK).
+PASS: subnet subnet-0dc5fac1cee796b7d shows no IGW route (private check OK).
+PASS: subnet subnet-07b202a38fe1de428 shows no IGW route (private check OK).
+
+Failures:
+  - FAIL: subnet subnet-0cd5c1d1b24079f3b has IGW route via igw-0d0d38518fd0651a5 (not private).
+  - FAIL: subnet subnet-07136d058ea837168 has IGW route via igw-0d0d38518fd0651a5 (not private).
+  - FAIL: subnet subnet-06e93cba7fdd7bcef has IGW route via igw-0d0d38518fd0651a5 (not private).
+
+RESULT: FAIL
+===========================================
+
+Wrote: gate_result.json
+
+===== Gate: secrets_and_role =====
+Timestamp (UTC): 2026-01-25T02:21:53Z
+Region: us-west-2
+Instance ID: i-0cff400cc4f896081
+Secret ID: taaops/lab/mysql
+
+=== SEIR Gate: Secrets + EC2 Role Verification ===
+Timestamp (UTC): 2026-01-25T02:22:18Z
+Region:          us-west-2
+Instance ID:     i-0cff400cc4f896081
+Secret ID:       taaops/lab/mysql
+Resolved Role:   taaops-armageddon-lab1-asm-role
+Caller ARN:      arn:aws:iam::015195098145:user/AWSCLI
+-----------------------------------------------
+PASS: aws sts get-caller-identity succeeded (credentials OK).
+PASS: secret exists and is describable (taaops/lab/mysql).
+PASS: secret rotation enabled (taaops/lab/mysql).
+PASS: no resource policy found (OK) or not applicable (taaops/lab/mysql).
+PASS: instance has IAM instance profile attached (i-0cff400cc4f896081).
+PASS: resolved instance profile -> role (taaops-armageddon-lab1-asm-role -> taaops-armageddon-lab1-asm-role).
+PASS: resolved role matches EXPECTED_ROLE_NAME (taaops-armageddon-lab1-asm-role).
+INFO: on-instance checks skipped (not running as expected role on EC2).
+
+Warnings:
+  - WARN: current caller ARN is not assumed-role/taaops-armageddon-lab1-asm-role (you may be running off-instance).
+
+RESULT: PASS
+===============================================
+
+Wrote: gate_result.json
+
+===== Gate: secrets_and_role =====
+Timestamp (UTC): 2026-01-26T03:04:43Z
+Region: us-west-2
+Instance ID: i-0cff400cc4f896081
+Secret ID: taaops/lab/mysql
+
+=== SEIR Gate: Secrets + EC2 Role Verification ===
+Timestamp (UTC): 2026-01-26T03:05:04Z
+Region:          us-west-2
+Instance ID:     i-0cff400cc4f896081
+Secret ID:       taaops/lab/mysql
+Resolved Role:   taaops-armageddon-lab1-asm-role
+Caller ARN:      arn:aws:iam::015195098145:user/AWSCLI
+-----------------------------------------------
+PASS: aws sts get-caller-identity succeeded (credentials OK).
+PASS: secret exists and is describable (taaops/lab/mysql).
+PASS: secret rotation enabled (taaops/lab/mysql).
+PASS: no resource policy found (OK) or not applicable (taaops/lab/mysql).
+PASS: instance has IAM instance profile attached (i-0cff400cc4f896081).
+PASS: resolved instance profile -> role (taaops-armageddon-lab1-asm-role -> taaops-armageddon-lab1-asm-role).
+PASS: resolved role matches EXPECTED_ROLE_NAME (taaops-armageddon-lab1-asm-role).
+INFO: on-instance checks skipped (not running as expected role on EC2).
+
+Warnings:
+  - WARN: current caller ARN is not assumed-role/taaops-armageddon-lab1-asm-role (you may be running off-instance).
+
+RESULT: PASS
+===============================================
+
+Wrote: gate_result.json
+
+===== Gate: secrets_and_role =====
+Timestamp (UTC): 2026-01-26T05:17:29Z
+Region: us-west-2
+Instance ID: i-0cff400cc4f896081
+Secret ID: taaops/lab/mysql
+
+=== SEIR Gate: Secrets + EC2 Role Verification ===
+Timestamp (UTC): 2026-01-26T05:18:00Z
+Region:          us-west-2
+Instance ID:     i-0cff400cc4f896081
+Secret ID:       taaops/lab/mysql
+Resolved Role:   taaops-armageddon-lab1-asm-role
+Caller ARN:      arn:aws:iam::015195098145:user/AWSCLI
+-----------------------------------------------
+PASS: aws sts get-caller-identity succeeded (credentials OK).
+PASS: secret exists and is describable (taaops/lab/mysql).
+PASS: secret rotation enabled (taaops/lab/mysql).
+PASS: no resource policy found (OK) or not applicable (taaops/lab/mysql).
+PASS: instance has IAM instance profile attached (i-0cff400cc4f896081).
+PASS: resolved instance profile -> role (taaops-armageddon-lab1-asm-role -> taaops-armageddon-lab1-asm-role).
+PASS: resolved role matches EXPECTED_ROLE_NAME (taaops-armageddon-lab1-asm-role).
+INFO: on-instance checks skipped (not running as expected role on EC2).
+
+Warnings:
+  - WARN: current caller ARN is not assumed-role/taaops-armageddon-lab1-asm-role (you may be running off-instance).
+
+RESULT: PASS
+===============================================
+
+Wrote: gate_result.json
+
+===== Gate: secrets_and_role =====
+Timestamp (UTC): 2026-01-26T05:18:17Z
+Region: us-west-2
+Instance ID: i-0cff400cc4f896081
+Secret ID: taaops/lab/mysql
+
+=== SEIR Gate: Secrets + EC2 Role Verification ===
+Timestamp (UTC): 2026-01-26T05:18:44Z
+Region:          us-west-2
+Instance ID:     i-0cff400cc4f896081
+Secret ID:       taaops/lab/mysql
+Resolved Role:   taaops-armageddon-lab1-asm-role
+Caller ARN:      arn:aws:iam::015195098145:user/AWSCLI
+-----------------------------------------------
+PASS: aws sts get-caller-identity succeeded (credentials OK).
+PASS: secret exists and is describable (taaops/lab/mysql).
+PASS: secret rotation enabled (taaops/lab/mysql).
+PASS: no resource policy found (OK) or not applicable (taaops/lab/mysql).
+PASS: instance has IAM instance profile attached (i-0cff400cc4f896081).
+PASS: resolved instance profile -> role (taaops-armageddon-lab1-asm-role -> taaops-armageddon-lab1-asm-role).
+PASS: resolved role matches EXPECTED_ROLE_NAME (taaops-armageddon-lab1-asm-role).
+INFO: on-instance checks skipped (not running as expected role on EC2).
+
+Warnings:
+  - WARN: current caller ARN is not assumed-role/taaops-armageddon-lab1-asm-role (you may be running off-instance).
+
+RESULT: PASS
+===============================================
+
+Wrote: gate_result.json
+
+===== Gate: network_db =====
+Timestamp (UTC): 2026-01-26T05:19:43Z
+Region: us-west-2
+Instance ID: i-0cff400cc4f896081
+DB ID: taaops-rds
+
+=== SEIR Gate: Network + RDS Verification ===
+Timestamp (UTC): 2026-01-26T05:21:14Z
+Region:          us-west-2
+EC2 Instance:    i-0cff400cc4f896081
+RDS Instance:    taaops-rds
+Engine:          mysql
+DB Port:         3306
+Caller ARN:      arn:aws:iam::015195098145:user/AWSCLI
+-------------------------------------------
+PASS: aws sts get-caller-identity succeeded (credentials OK).
+PASS: RDS instance exists (taaops-rds).
+PASS: RDS is not publicly accessible (PubliclyAccessible=False).
+INFO: using DB_PORT override = 3306.
+PASS: EC2 security groups resolved (i-0cff400cc4f896081): sg-0a75d3099e408f86c
+PASS: RDS security groups resolved (taaops-rds): sg-02836f3d088e014e2
+PASS: RDS SG allows DB port 3306 from EC2 SG (SG-to-SG ingress present).
+INFO: DB subnet group (default-vpc-0650bb80688d52180) subnets: subnet-0cd5c1d1b24079f3b	subnet-07136d058ea837168	subnet-03c6fe3b99ebd332b	subnet-0dc5fac1cee796b7d	subnet-06e93cba7fdd7bcef	subnet-07b202a38fe1de428
+PASS: subnet subnet-03c6fe3b99ebd332b shows no IGW route (private check OK).
+PASS: subnet subnet-0dc5fac1cee796b7d shows no IGW route (private check OK).
+PASS: subnet subnet-07b202a38fe1de428 shows no IGW route (private check OK).
+
+Failures:
+  - FAIL: subnet subnet-0cd5c1d1b24079f3b has IGW route via igw-0d0d38518fd0651a5 (not private).
+  - FAIL: subnet subnet-07136d058ea837168 has IGW route via igw-0d0d38518fd0651a5 (not private).
+  - FAIL: subnet subnet-06e93cba7fdd7bcef has IGW route via igw-0d0d38518fd0651a5 (not private).
+
+RESULT: FAIL
+===========================================
+
+Wrote: gate_result.json
+
+===== Gate: secrets_and_role =====
+Timestamp (UTC): 2026-01-26T05:21:37Z
+Region: us-west-2
+Instance ID: i-0cff400cc4f896081
+Secret ID: taaops/lab/mysql
+
+=== SEIR Gate: Secrets + EC2 Role Verification ===
+Timestamp (UTC): 2026-01-26T05:22:02Z
+Region:          us-west-2
+Instance ID:     i-0cff400cc4f896081
+Secret ID:       taaops/lab/mysql
+Resolved Role:   taaops-armageddon-lab1-asm-role
+Caller ARN:      arn:aws:iam::015195098145:user/AWSCLI
+-----------------------------------------------
+PASS: aws sts get-caller-identity succeeded (credentials OK).
+PASS: secret exists and is describable (taaops/lab/mysql).
+PASS: secret rotation enabled (taaops/lab/mysql).
+PASS: no resource policy found (OK) or not applicable (taaops/lab/mysql).
+PASS: instance has IAM instance profile attached (i-0cff400cc4f896081).
+PASS: resolved instance profile -> role (taaops-armageddon-lab1-asm-role -> taaops-armageddon-lab1-asm-role).
+PASS: resolved role matches EXPECTED_ROLE_NAME (taaops-armageddon-lab1-asm-role).
+INFO: on-instance checks skipped (not running as expected role on EC2).
+
+Warnings:
+  - WARN: current caller ARN is not assumed-role/taaops-armageddon-lab1-asm-role (you may be running off-instance).
+
+RESULT: PASS
+===============================================
+
+Wrote: gate_result.json
+
+===== Gate: secrets_and_role =====
+Timestamp (UTC): 2026-01-26T06:35:16Z
+Region: us-west-2
+Instance ID: i-0cff400cc4f896081
+Secret ID: taaops/lab/mysql
+
+=== SEIR Gate: Secrets + EC2 Role Verification ===
+Timestamp (UTC): 2026-01-26T06:35:39Z
+Region:          us-west-2
+Instance ID:     i-0cff400cc4f896081
+Secret ID:       taaops/lab/mysql
+Resolved Role:   taaops-armageddon-lab1-asm-role
+Caller ARN:      arn:aws:iam::015195098145:user/AWSCLI
+-----------------------------------------------
+PASS: aws sts get-caller-identity succeeded (credentials OK).
+PASS: secret exists and is describable (taaops/lab/mysql).
+PASS: secret rotation enabled (taaops/lab/mysql).
+PASS: no resource policy found (OK) or not applicable (taaops/lab/mysql).
+PASS: instance has IAM instance profile attached (i-0cff400cc4f896081).
+PASS: resolved instance profile -> role (taaops-armageddon-lab1-asm-role -> taaops-armageddon-lab1-asm-role).
+PASS: resolved role matches EXPECTED_ROLE_NAME (taaops-armageddon-lab1-asm-role).
+INFO: on-instance checks skipped (not running as expected role on EC2).
+
+Warnings:
+  - WARN: current caller ARN is not assumed-role/taaops-armageddon-lab1-asm-role (you may be running off-instance).
+
+RESULT: PASS
+===============================================
+
+Wrote: /c/Users/John Sweeney/aws/class7/armageddon/jastekAI/SEIR_Foundations/LAB1/python/output/gate_result.json
+
+===== Gate: secrets_and_role =====
+Timestamp (UTC): 2026-01-26T06:41:47Z
+Region: us-west-2
+Instance ID: ...
+Secret ID: ...
+
+=== SEIR Gate: Secrets + EC2 Role Verification ===
+Timestamp (UTC): 2026-01-26T06:42:04Z
+Region:          us-west-2
+Instance ID:     ...
+Secret ID:       ...
+Resolved Role:   (none)
+Caller ARN:      arn:aws:iam::015195098145:user/AWSCLI
+-----------------------------------------------
+PASS: aws sts get-caller-identity succeeded (credentials OK).
+PASS: no resource policy found (OK) or not applicable (...).
+INFO: on-instance checks skipped (not running as expected role on EC2).
+
+Warnings:
+  - WARN: current caller ARN is not assumed-role/taaops-armageddon-lab1-asm-role (you may be running off-instance).
+
+Failures:
+  - FAIL: cannot describe secret (...). It may not exist or you lack permission.
+  - FAIL: secret rotation is not enabled (RotationEnabled=Unknown) for ....
+  - FAIL: instance has NO IAM instance profile attached (...).
+  - FAIL: resolved role () does not match EXPECTED_ROLE_NAME (taaops-armageddon-lab1-asm-role).
+
+RESULT: FAIL
+===============================================
+
+Wrote: /c/Users/John Sweeney/aws/class7/armageddon/jastekAI/SEIR_Foundations/LAB1/python/output/gate_result.json
+
+===== Gate: network_db =====
+Timestamp (UTC): 2026-01-26T06:42:07Z
+Region: us-west-2
+Instance ID: ...
+DB ID: ...
+
+=== SEIR Gate: Network + RDS Verification ===
+Timestamp (UTC): 2026-01-26T06:42:33Z
+Region:          us-west-2
+EC2 Instance:    ...
+RDS Instance:    ...
+Engine:          Unknown
+DB Port:         3306
+Caller ARN:      arn:aws:iam::015195098145:user/AWSCLI
+-------------------------------------------
+PASS: aws sts get-caller-identity succeeded (credentials OK).
+INFO: using DB_PORT override = 3306.
+
+Warnings:
+  - WARN: could not determine PubliclyAccessible for ... (value=Unknown).
+  - WARN: could not resolve DBSubnetGroupName; skipping private subnet checks.
+
+Failures:
+  - FAIL: RDS instance not found or no permission (...).
+  - FAIL: could not resolve EC2 security groups for ....
+  - FAIL: could not resolve RDS VPC security groups for ....
+
+RESULT: FAIL
+===========================================
+
+Wrote: /c/Users/John Sweeney/aws/class7/armageddon/jastekAI/SEIR_Foundations/LAB1/python/output/gate_result.json
+
+===== Gate: network_db =====
+Timestamp (UTC): 2026-01-26T06:44:10Z
+Region: us-west-2
+Instance ID: i-0cff400cc4f896081
+DB ID: taaops-rds
+
+=== SEIR Gate: Network + RDS Verification ===
+Timestamp (UTC): 2026-01-26T06:45:29Z
+Region:          us-west-2
+EC2 Instance:    i-0cff400cc4f896081
+RDS Instance:    taaops-rds
+Engine:          mysql
+DB Port:         3306
+Caller ARN:      arn:aws:iam::015195098145:user/AWSCLI
+-------------------------------------------
+PASS: aws sts get-caller-identity succeeded (credentials OK).
+PASS: RDS instance exists (taaops-rds).
+PASS: RDS is not publicly accessible (PubliclyAccessible=False).
+INFO: using DB_PORT override = 3306.
+PASS: EC2 security groups resolved (i-0cff400cc4f896081): sg-0a75d3099e408f86c
+PASS: RDS security groups resolved (taaops-rds): sg-02836f3d088e014e2
+PASS: RDS SG allows DB port 3306 from EC2 SG (SG-to-SG ingress present).
+INFO: DB subnet group (default-vpc-0650bb80688d52180) subnets: subnet-0cd5c1d1b24079f3b	subnet-07136d058ea837168	subnet-03c6fe3b99ebd332b	subnet-0dc5fac1cee796b7d	subnet-06e93cba7fdd7bcef	subnet-07b202a38fe1de428
+PASS: subnet subnet-03c6fe3b99ebd332b shows no IGW route (private check OK).
+PASS: subnet subnet-0dc5fac1cee796b7d shows no IGW route (private check OK).
+PASS: subnet subnet-07b202a38fe1de428 shows no IGW route (private check OK).
+
+Failures:
+  - FAIL: subnet subnet-0cd5c1d1b24079f3b has IGW route via igw-0d0d38518fd0651a5 (not private).
+  - FAIL: subnet subnet-07136d058ea837168 has IGW route via igw-0d0d38518fd0651a5 (not private).
+  - FAIL: subnet subnet-06e93cba7fdd7bcef has IGW route via igw-0d0d38518fd0651a5 (not private).
+
+RESULT: FAIL
+===========================================
+
+Wrote: /c/Users/John Sweeney/aws/class7/armageddon/jastekAI/SEIR_Foundations/LAB1/python/output/gate_result.json
+
+===== Gate: secrets_and_role =====
+Timestamp (UTC): 2026-01-26T06:51:29Z
+Region: us-west-2
+Instance ID: i-0cff400cc4f896081
+Secret ID: taaops/lab/mysql
+
+=== SEIR Gate: Secrets + EC2 Role Verification ===
+Timestamp (UTC): 2026-01-26T06:51:50Z
+Region:          us-west-2
+Instance ID:     i-0cff400cc4f896081
+Secret ID:       taaops/lab/mysql
+Resolved Role:   taaops-armageddon-lab1-asm-role
+Caller ARN:      arn:aws:iam::015195098145:user/AWSCLI
+-----------------------------------------------
+PASS: aws sts get-caller-identity succeeded (credentials OK).
+PASS: secret exists and is describable (taaops/lab/mysql).
+PASS: secret rotation enabled (taaops/lab/mysql).
+PASS: no resource policy found (OK) or not applicable (taaops/lab/mysql).
+PASS: instance has IAM instance profile attached (i-0cff400cc4f896081).
+PASS: resolved instance profile -> role (taaops-armageddon-lab1-asm-role -> taaops-armageddon-lab1-asm-role).
+PASS: resolved role matches EXPECTED_ROLE_NAME (taaops-armageddon-lab1-asm-role).
+INFO: on-instance checks skipped (not running as expected role on EC2).
+
+Warnings:
+  - WARN: current caller ARN is not assumed-role/taaops-armageddon-lab1-asm-role (you may be running off-instance).
+
+RESULT: PASS
+===============================================
+
+Wrote: /c/Users/John Sweeney/aws/class7/armageddon/jastekAI/SEIR_Foundations/LAB1/python/output/gate_result.json
+
+===== Gate: secrets_and_role =====
+Timestamp (UTC): 2026-01-26T06:52:50Z
+Region: us-west-2
+Instance ID: i-0cff400cc4f896081
+Secret ID: taaops/lab/mysql
+
+=== SEIR Gate: Secrets + EC2 Role Verification ===
+Timestamp (UTC): 2026-01-26T06:53:09Z
+Region:          us-west-2
+Instance ID:     i-0cff400cc4f896081
+Secret ID:       taaops/lab/mysql
+Resolved Role:   taaops-armageddon-lab1-asm-role
+Caller ARN:      arn:aws:iam::015195098145:user/AWSCLI
+-----------------------------------------------
+PASS: aws sts get-caller-identity succeeded (credentials OK).
+PASS: secret exists and is describable (taaops/lab/mysql).
+PASS: secret rotation enabled (taaops/lab/mysql).
+PASS: no resource policy found (OK) or not applicable (taaops/lab/mysql).
+PASS: instance has IAM instance profile attached (i-0cff400cc4f896081).
+PASS: resolved instance profile -> role (taaops-armageddon-lab1-asm-role -> taaops-armageddon-lab1-asm-role).
+PASS: resolved role matches EXPECTED_ROLE_NAME (taaops-armageddon-lab1-asm-role).
+INFO: on-instance checks skipped (not running as expected role on EC2).
+
+Warnings:
+  - WARN: current caller ARN is not assumed-role/taaops-armageddon-lab1-asm-role (you may be running off-instance).
+
+RESULT: PASS
+===============================================
+
+Wrote: /c/Users/John Sweeney/aws/class7/armageddon/jastekAI/SEIR_Foundations/LAB1/python/output/gate_result.json
+
+===== Gate: network_db =====
+Timestamp (UTC): 2026-01-26T06:54:39Z
+Region: us-west-2
+Instance ID: i-0cff400cc4f896081
+DB ID: taaops-rds
+
+=== SEIR Gate: Network + RDS Verification ===
+Timestamp (UTC): 2026-01-26T06:55:41Z
+Region:          us-west-2
+EC2 Instance:    i-0cff400cc4f896081
+RDS Instance:    taaops-rds
+Engine:          mysql
+DB Port:         3306
+Caller ARN:      arn:aws:iam::015195098145:user/AWSCLI
+-------------------------------------------
+PASS: aws sts get-caller-identity succeeded (credentials OK).
+PASS: RDS instance exists (taaops-rds).
+PASS: RDS is not publicly accessible (PubliclyAccessible=False).
+INFO: using DB_PORT override = 3306.
+PASS: EC2 security groups resolved (i-0cff400cc4f896081): sg-0a75d3099e408f86c
+PASS: RDS security groups resolved (taaops-rds): sg-02836f3d088e014e2
+PASS: RDS SG allows DB port 3306 from EC2 SG (SG-to-SG ingress present).
+INFO: DB subnet group (default-vpc-0650bb80688d52180) subnets: subnet-0cd5c1d1b24079f3b	subnet-07136d058ea837168	subnet-03c6fe3b99ebd332b	subnet-0dc5fac1cee796b7d	subnet-06e93cba7fdd7bcef	subnet-07b202a38fe1de428
+PASS: subnet subnet-03c6fe3b99ebd332b shows no IGW route (private check OK).
+PASS: subnet subnet-0dc5fac1cee796b7d shows no IGW route (private check OK).
+PASS: subnet subnet-07b202a38fe1de428 shows no IGW route (private check OK).
+
+Failures:
+  - FAIL: subnet subnet-0cd5c1d1b24079f3b has IGW route via igw-0d0d38518fd0651a5 (not private).
+  - FAIL: subnet subnet-07136d058ea837168 has IGW route via igw-0d0d38518fd0651a5 (not private).
+  - FAIL: subnet subnet-06e93cba7fdd7bcef has IGW route via igw-0d0d38518fd0651a5 (not private).
+
+RESULT: FAIL
+===========================================
+
+Wrote: /c/Users/John Sweeney/aws/class7/armageddon/jastekAI/SEIR_Foundations/LAB1/python/output/gate_result.json
+
+===== Gate: all_gates =====
+Timestamp (UTC): 2026-01-26T07:40:43Z
+Region: us-west-2
+Instance ID: i-0cff400cc4f896081
+Secret ID: taaops/lab/mysql
+DB ID: taaops-rds
+chmod: cannot access './gate_secrets_and_role.sh': No such file or directory
+chmod: cannot access './gate_network_db.sh': No such file or directory
+=== Running Gate 1/2: secrets_and_role ===
+
+===== Gate: secrets_and_role =====
+Timestamp (UTC): 2026-01-26T07:40:43Z
+Region: us-west-2
+Instance ID: i-0cff400cc4f896081
+Secret ID: taaops/lab/mysql
+
+=== SEIR Gate: Secrets + EC2 Role Verification ===
+
+=== SEIR Gate: Secrets + EC2 Role Verification ===
+Timestamp (UTC): 2026-01-26T07:41:01Z
+Region:          us-west-2
+Instance ID:     i-0cff400cc4f896081
+Secret ID:       taaops/lab/mysql
+Resolved Role:   taaops-armageddon-lab1-asm-role
+Caller ARN:      arn:aws:iam::015195098145:user/AWSCLI
+-----------------------------------------------
+PASS: aws sts get-caller-identity succeeded (credentials OK).
+PASS: secret exists and is describable (taaops/lab/mysql).
+PASS: secret rotation enabled (taaops/lab/mysql).
+PASS: no resource policy found (OK) or not applicable (taaops/lab/mysql).
+PASS: instance has IAM instance profile attached (i-0cff400cc4f896081).
+PASS: resolved instance profile -> role (taaops-armageddon-lab1-asm-role -> taaops-armageddon-lab1-asm-role).
+PASS: resolved role matches EXPECTED_ROLE_NAME (taaops-armageddon-lab1-asm-role).
+INFO: on-instance checks skipped (not running as expected role on EC2).
+
+Warnings:
+  - WARN: current caller ARN is not assumed-role/taaops-armageddon-lab1-asm-role (you may be running off-instance).
+
+RESULT: PASS
+===============================================
+
+Timestamp (UTC): 2026-01-26T07:41:01Z
+Region:          us-west-2
+Instance ID:     i-0cff400cc4f896081
+Secret ID:       taaops/lab/mysql
+Resolved Role:   taaops-armageddon-lab1-asm-role
+Caller ARN:      arn:aws:iam::015195098145:user/AWSCLI
+-----------------------------------------------
+PASS: aws sts get-caller-identity succeeded (credentials OK).
+PASS: secret exists and is describable (taaops/lab/mysql).
+PASS: secret rotation enabled (taaops/lab/mysql).
+PASS: no resource policy found (OK) or not applicable (taaops/lab/mysql).
+PASS: instance has IAM instance profile attached (i-0cff400cc4f896081).
+PASS: resolved instance profile -> role (taaops-armageddon-lab1-asm-role -> taaops-armageddon-lab1-asm-role).
+PASS: resolved role matches EXPECTED_ROLE_NAME (taaops-armageddon-lab1-asm-role).
+INFO: on-instance checks skipped (not running as expected role on EC2).
+
+Warnings:
+  - WARN: current caller ARN is not assumed-role/taaops-armageddon-lab1-asm-role (you may be running off-instance).
+
+RESULT: PASS
+===============================================
+
+Wrote: /c/Users/John Sweeney/aws/class7/armageddon/jastekAI/SEIR_Foundations/LAB1/python/output/gate_secrets_and_role.json
+Wrote: /c/Users/John Sweeney/aws/class7/armageddon/jastekAI/SEIR_Foundations/LAB1/python/output/gate_secrets_and_role.json
+=== Running Gate 2/2: network_db ===
+
+===== Gate: network_db =====
+Timestamp (UTC): 2026-01-26T07:41:02Z
+Region: us-west-2
+Instance ID: i-0cff400cc4f896081
+DB ID: taaops-rds
+
+=== SEIR Gate: Network + RDS Verification ===
+
+=== SEIR Gate: Network + RDS Verification ===
+Timestamp (UTC): 2026-01-26T07:42:03Z
+Region:          us-west-2
+EC2 Instance:    i-0cff400cc4f896081
+RDS Instance:    taaops-rds
+Engine:          mysql
+DB Port:         3306
+Caller ARN:      arn:aws:iam::015195098145:user/AWSCLI
+-------------------------------------------
+PASS: aws sts get-caller-identity succeeded (credentials OK).
+PASS: RDS instance exists (taaops-rds).
+PASS: RDS is not publicly accessible (PubliclyAccessible=False).
+INFO: using DB_PORT override = 3306.
+PASS: EC2 security groups resolved (i-0cff400cc4f896081): sg-0a75d3099e408f86c
+PASS: RDS security groups resolved (taaops-rds): sg-02836f3d088e014e2
+PASS: RDS SG allows DB port 3306 from EC2 SG (SG-to-SG ingress present).
+INFO: DB subnet group (default-vpc-0650bb80688d52180) subnets: subnet-0cd5c1d1b24079f3b	subnet-07136d058ea837168	subnet-03c6fe3b99ebd332b	subnet-0dc5fac1cee796b7d	subnet-06e93cba7fdd7bcef	subnet-07b202a38fe1de428
+PASS: subnet subnet-03c6fe3b99ebd332b shows no IGW route (private check OK).
+PASS: subnet subnet-0dc5fac1cee796b7d shows no IGW route (private check OK).
+PASS: subnet subnet-07b202a38fe1de428 shows no IGW route (private check OK).
+
+Failures:
+  - FAIL: subnet subnet-0cd5c1d1b24079f3b has IGW route via igw-0d0d38518fd0651a5 (not private).
+  - FAIL: subnet subnet-07136d058ea837168 has IGW route via igw-0d0d38518fd0651a5 (not private).
+  - FAIL: subnet subnet-06e93cba7fdd7bcef has IGW route via igw-0d0d38518fd0651a5 (not private).
+
+RESULT: FAIL
+===========================================
+Timestamp (UTC): 2026-01-26T07:42:03Z
+Region:          us-west-2
+EC2 Instance:    i-0cff400cc4f896081
+RDS Instance:    taaops-rds
+Engine:          mysql
+DB Port:         3306
+
+Caller ARN:      arn:aws:iam::015195098145:user/AWSCLI
+-------------------------------------------
+PASS: aws sts get-caller-identity succeeded (credentials OK).
+PASS: RDS instance exists (taaops-rds).
+PASS: RDS is not publicly accessible (PubliclyAccessible=False).
+INFO: using DB_PORT override = 3306.
+PASS: EC2 security groups resolved (i-0cff400cc4f896081): sg-0a75d3099e408f86c
+PASS: RDS security groups resolved (taaops-rds): sg-02836f3d088e014e2
+PASS: RDS SG allows DB port 3306 from EC2 SG (SG-to-SG ingress present).
+INFO: DB subnet group (default-vpc-0650bb80688d52180) subnets: subnet-0cd5c1d1b24079f3b	subnet-07136d058ea837168	subnet-03c6fe3b99ebd332b	subnet-0dc5fac1cee796b7d	subnet-06e93cba7fdd7bcef	subnet-07b202a38fe1de428
+PASS: subnet subnet-03c6fe3b99ebd332b shows no IGW route (private check OK).
+PASS: subnet subnet-0dc5fac1cee796b7d shows no IGW route (private check OK).
+PASS: subnet subnet-07b202a38fe1de428 shows no IGW route (private check OK).
+
+Failures:
+  - FAIL: subnet subnet-0cd5c1d1b24079f3b has IGW route via igw-0d0d38518fd0651a5 (not private).
+  - FAIL: subnet subnet-07136d058ea837168 has IGW route via igw-0d0d38518fd0651a5 (not private).
+  - FAIL: subnet subnet-06e93cba7fdd7bcef has IGW route via igw-0d0d38518fd0651a5 (not private).
+
+RESULT: FAIL
+===========================================
+
+Wrote: /c/Users/John Sweeney/aws/class7/armageddon/jastekAI/SEIR_Foundations/LAB1/python/output/gate_network_db.json
+Wrote: /c/Users/John Sweeney/aws/class7/armageddon/jastekAI/SEIR_Foundations/LAB1/python/output/gate_network_db.json
+
+===== Gate: all_gates =====
+Timestamp (UTC): 2026-01-26T07:42:48Z
+Region: us-west-2
+Instance ID: i-0cff400cc4f896081
+Secret ID: taaops/lab/mysql
+DB ID: taaops-rds
+=== Running Gate 1/2: secrets_and_role ===
+
+===== Gate: secrets_and_role =====
+Timestamp (UTC): 2026-01-26T07:42:49Z
+Region: us-west-2
+Instance ID: i-0cff400cc4f896081
+Secret ID: taaops/lab/mysql
+
+=== SEIR Gate: Secrets + EC2 Role Verification ===
+
+=== SEIR Gate: Secrets + EC2 Role Verification ===
+Timestamp (UTC): 2026-01-26T07:43:07Z
+Region:          us-west-2
+Instance ID:     i-0cff400cc4f896081
+Secret ID:       taaops/lab/mysql
+Resolved Role:   taaops-armageddon-lab1-asm-role
+Caller ARN:      arn:aws:iam::015195098145:user/AWSCLI
+-----------------------------------------------
+PASS: aws sts get-caller-identity succeeded (credentials OK).
+PASS: secret exists and is describable (taaops/lab/mysql).
+PASS: secret rotation enabled (taaops/lab/mysql).
+PASS: no resource policy found (OK) or not applicable (taaops/lab/mysql).
+PASS: instance has IAM instance profile attached (i-0cff400cc4f896081).
+Timestamp (UTC): 2026-01-26T07:43:07Z
+PASS: resolved instance profile -> role (taaops-armageddon-lab1-asm-role -> taaops-armageddon-lab1-asm-role).
+PASS: resolved role matches EXPECTED_ROLE_NAME (taaops-armageddon-lab1-asm-role).
+INFO: on-instance checks skipped (not running as expected role on EC2).
+
+Warnings:
+  - WARN: current caller ARN is not assumed-role/taaops-armageddon-lab1-asm-role (you may be running off-instance).
+
+RESULT: PASS
+===============================================
+
+Region:          us-west-2
+Instance ID:     i-0cff400cc4f896081
+Secret ID:       taaops/lab/mysql
+Resolved Role:   taaops-armageddon-lab1-asm-role
+Caller ARN:      arn:aws:iam::015195098145:user/AWSCLI
+-----------------------------------------------
+PASS: aws sts get-caller-identity succeeded (credentials OK).
+PASS: secret exists and is describable (taaops/lab/mysql).
+PASS: secret rotation enabled (taaops/lab/mysql).
+PASS: no resource policy found (OK) or not applicable (taaops/lab/mysql).
+PASS: instance has IAM instance profile attached (i-0cff400cc4f896081).
+PASS: resolved instance profile -> role (taaops-armageddon-lab1-asm-role -> taaops-armageddon-lab1-asm-role).
+PASS: resolved role matches EXPECTED_ROLE_NAME (taaops-armageddon-lab1-asm-role).
+INFO: on-instance checks skipped (not running as expected role on EC2).
+
+Warnings:
+  - WARN: current caller ARN is not assumed-role/taaops-armageddon-lab1-asm-role (you may be running off-instance).
+
+RESULT: PASS
+===============================================
+
+Wrote: /c/Users/John Sweeney/aws/class7/armageddon/jastekAI/SEIR_Foundations/LAB1/python/output/gate_secrets_and_role.json
+Wrote: /c/Users/John Sweeney/aws/class7/armageddon/jastekAI/SEIR_Foundations/LAB1/python/output/gate_secrets_and_role.json
+=== Running Gate 2/2: network_db ===
+
+===== Gate: network_db =====
+Timestamp (UTC): 2026-01-26T07:43:08Z
+Region: us-west-2
+Instance ID: i-0cff400cc4f896081
+DB ID: taaops-rds
+
+=== SEIR Gate: Network + RDS Verification ===
+
+=== SEIR Gate: Network + RDS Verification ===
+Timestamp (UTC): 2026-01-26T07:44:18Z
+Region:          us-west-2
+EC2 Instance:    i-0cff400cc4f896081
+RDS Instance:    taaops-rds
+Engine:          mysql
+DB Port:         3306
+Caller ARN:      arn:aws:iam::015195098145:user/AWSCLI
+-------------------------------------------
+PASS: aws sts get-caller-identity succeeded (credentials OK).
+PASS: RDS instance exists (taaops-rds).
+PASS: RDS is not publicly accessible (PubliclyAccessible=False).
+INFO: using DB_PORT override = 3306.
+PASS: EC2 security groups resolved (i-0cff400cc4f896081): sg-0a75d3099e408f86c
+PASS: RDS security groups resolved (taaops-rds): sg-02836f3d088e014e2
+PASS: RDS SG allows DB port 3306 from EC2 SG (SG-to-SG ingress present).
+Timestamp (UTC): 2026-01-26T07:44:18Z
+INFO: DB subnet group (default-vpc-0650bb80688d52180) subnets: subnet-0cd5c1d1b24079f3b	subnet-07136d058ea837168	subnet-03c6fe3b99ebd332b	subnet-0dc5fac1cee796b7d	subnet-06e93cba7fdd7bcef	subnet-07b202a38fe1de428
+PASS: subnet subnet-03c6fe3b99ebd332b shows no IGW route (private check OK).
+PASS: subnet subnet-0dc5fac1cee796b7d shows no IGW route (private check OK).
+PASS: subnet subnet-07b202a38fe1de428 shows no IGW route (private check OK).
+
+Failures:
+  - FAIL: subnet subnet-0cd5c1d1b24079f3b has IGW route via igw-0d0d38518fd0651a5 (not private).
+  - FAIL: subnet subnet-07136d058ea837168 has IGW route via igw-0d0d38518fd0651a5 (not private).
+  - FAIL: subnet subnet-06e93cba7fdd7bcef has IGW route via igw-0d0d38518fd0651a5 (not private).
+
+RESULT: FAIL
+===========================================
+
+Region:          us-west-2
+EC2 Instance:    i-0cff400cc4f896081
+RDS Instance:    taaops-rds
+Engine:          mysql
+DB Port:         3306
+Caller ARN:      arn:aws:iam::015195098145:user/AWSCLI
+-------------------------------------------
+PASS: aws sts get-caller-identity succeeded (credentials OK).
+PASS: RDS instance exists (taaops-rds).
+PASS: RDS is not publicly accessible (PubliclyAccessible=False).
+INFO: using DB_PORT override = 3306.
+PASS: EC2 security groups resolved (i-0cff400cc4f896081): sg-0a75d3099e408f86c
+PASS: RDS security groups resolved (taaops-rds): sg-02836f3d088e014e2
+PASS: RDS SG allows DB port 3306 from EC2 SG (SG-to-SG ingress present).
+INFO: DB subnet group (default-vpc-0650bb80688d52180) subnets: subnet-0cd5c1d1b24079f3b	subnet-07136d058ea837168	subnet-03c6fe3b99ebd332b	subnet-0dc5fac1cee796b7d	subnet-06e93cba7fdd7bcef	subnet-07b202a38fe1de428
+PASS: subnet subnet-03c6fe3b99ebd332b shows no IGW route (private check OK).
+PASS: subnet subnet-0dc5fac1cee796b7d shows no IGW route (private check OK).
+PASS: subnet subnet-07b202a38fe1de428 shows no IGW route (private check OK).
+
+Failures:
+  - FAIL: subnet subnet-0cd5c1d1b24079f3b has IGW route via igw-0d0d38518fd0651a5 (not private).
+  - FAIL: subnet subnet-07136d058ea837168 has IGW route via igw-0d0d38518fd0651a5 (not private).
+  - FAIL: subnet subnet-06e93cba7fdd7bcef has IGW route via igw-0d0d38518fd0651a5 (not private).
+
+RESULT: FAIL
+===========================================
+
+Wrote: /c/Users/John Sweeney/aws/class7/armageddon/jastekAI/SEIR_Foundations/LAB1/python/output/gate_network_db.json
+Wrote: /c/Users/John Sweeney/aws/class7/armageddon/jastekAI/SEIR_Foundations/LAB1/python/output/gate_network_db.json
+
+===== Gate: secrets_and_role =====
+Timestamp (UTC): 2026-01-26T07:45:24Z
+Region: us-west-2
+Instance ID: i-0cff400cc4f896081
+Secret ID: taaops/lab/mysql
+
+=== SEIR Gate: Secrets + EC2 Role Verification ===
+Timestamp (UTC): 2026-01-26T07:45:40Z
+Region:          us-west-2
+Instance ID:     i-0cff400cc4f896081
+Secret ID:       taaops/lab/mysql
+Resolved Role:   taaops-armageddon-lab1-asm-role
+Caller ARN:      arn:aws:iam::015195098145:user/AWSCLI
+-----------------------------------------------
+PASS: aws sts get-caller-identity succeeded (credentials OK).
+PASS: secret exists and is describable (taaops/lab/mysql).
+PASS: secret rotation enabled (taaops/lab/mysql).
+PASS: no resource policy found (OK) or not applicable (taaops/lab/mysql).
+PASS: instance has IAM instance profile attached (i-0cff400cc4f896081).
+PASS: resolved instance profile -> role (taaops-armageddon-lab1-asm-role -> taaops-armageddon-lab1-asm-role).
+PASS: resolved role matches EXPECTED_ROLE_NAME (taaops-armageddon-lab1-asm-role).
+INFO: on-instance checks skipped (not running as expected role on EC2).
+
+Warnings:
+  - WARN: current caller ARN is not assumed-role/taaops-armageddon-lab1-asm-role (you may be running off-instance).
+
+RESULT: PASS
+===============================================
+
+Wrote: /c/Users/John Sweeney/aws/class7/armageddon/jastekAI/SEIR_Foundations/LAB1/python/output/gate_secrets_and_role.json
+
+===== Gate: network_db =====
+Timestamp (UTC): 2026-01-26T08:03:49Z
+Region: us-west-2
+Instance ID: i-0cff400cc4f896081
+DB ID: taaops-rds
+
+=== SEIR Gate: Network + RDS Verification ===
+Timestamp (UTC): 2026-01-26T08:04:49Z
+Region:          us-west-2
+EC2 Instance:    i-0cff400cc4f896081
+RDS Instance:    taaops-rds
+Engine:          mysql
+DB Port:         3306
+Caller ARN:      arn:aws:iam::015195098145:user/AWSCLI
+-------------------------------------------
+PASS: aws sts get-caller-identity succeeded (credentials OK).
+PASS: RDS instance exists (taaops-rds).
+PASS: RDS is not publicly accessible (PubliclyAccessible=False).
+INFO: using DB_PORT override = 3306.
+PASS: EC2 security groups resolved (i-0cff400cc4f896081): sg-0a75d3099e408f86c
+PASS: RDS security groups resolved (taaops-rds): sg-02836f3d088e014e2
+PASS: RDS SG allows DB port 3306 from EC2 SG (SG-to-SG ingress present).
+INFO: DB subnet group (default-vpc-0650bb80688d52180) subnets: subnet-0cd5c1d1b24079f3b	subnet-07136d058ea837168	subnet-03c6fe3b99ebd332b	subnet-0dc5fac1cee796b7d	subnet-06e93cba7fdd7bcef	subnet-07b202a38fe1de428
+PASS: subnet subnet-03c6fe3b99ebd332b shows no IGW route (private check OK).
+PASS: subnet subnet-0dc5fac1cee796b7d shows no IGW route (private check OK).
+PASS: subnet subnet-07b202a38fe1de428 shows no IGW route (private check OK).
+
+Failures:
+  - FAIL: subnet subnet-0cd5c1d1b24079f3b has IGW route via igw-0d0d38518fd0651a5 (not private).
+  - FAIL: subnet subnet-07136d058ea837168 has IGW route via igw-0d0d38518fd0651a5 (not private).
+  - FAIL: subnet subnet-06e93cba7fdd7bcef has IGW route via igw-0d0d38518fd0651a5 (not private).
+
+RESULT: FAIL
+===========================================
+
+Wrote: /c/Users/John Sweeney/aws/class7/armageddon/jastekAI/SEIR_Foundations/LAB1/python/output/gate_network_db.json

@@ -1,0 +1,20 @@
+[31m╷[0m[0m
+[31m│[0m [0m[1m[31mError: [0m[0m[1mUnsupported attribute[0m
+[31m│[0m [0m
+[31m│[0m [0m[0m  on bedrock-autoreport.tf line 335, in resource "aws_sns_topic_subscription" "tokyo_ir_alarm_subscription":
+[31m│[0m [0m 335:   topic_arn = module.tokyo_monitoring[4m.sns_topic_arn[0m[0m
+[31m│[0m [0m    [90m├────────────────[0m
+[31m│[0m [0m[0m    [90m│[0m [1mmodule.tokyo_monitoring[0m is a object
+[31m│[0m [0m[0m
+[31m│[0m [0mThis object does not have an attribute named "sns_topic_arn".
+[31m╵[0m[0m
+[31m╷[0m[0m
+[31m│[0m [0m[1m[31mError: [0m[0m[1mUnsupported attribute[0m
+[31m│[0m [0m
+[31m│[0m [0m[0m  on bedrock-autoreport.tf line 346, in resource "aws_lambda_permission" "tokyo_allow_cloudwatch_invoke":
+[31m│[0m [0m 346:   source_arn    = module.tokyo_monitoring[4m.sns_topic_arn[0m[0m
+[31m│[0m [0m    [90m├────────────────[0m
+[31m│[0m [0m[0m    [90m│[0m [1mmodule.tokyo_monitoring[0m is a object
+[31m│[0m [0m[0m
+[31m│[0m [0mThis object does not have an attribute named "sns_topic_arn".
+[31m╵[0m[0m

@@ -1,0 +1,22 @@
+CHECK: secret exists
+PASS: secret exists (taaops/rds/mysql)
+INFO: auto-discovered instance ID = i-041e82e77928de8ef
+INFO: auto-discovered DB ID = taaops-aurora-0
+INFO: auto-discovered VPC ID = vpc-09480ebf0ca6705b1
+INFO: auto-discovered RDS SG name = taaops-rds-sg
+INFO: auto-discovered target group ARN = arn:aws:elasticloadbalancing:us-west-2:015195098145:targetgroup/taaops-lb-tg80/39344a5264d40de8
+INFO: auto-discovered ALB DNS = taaops-load-balancer-989477164.us-west-2.elb.amazonaws.com
+CHECK: instance has IAM instance profile
+PASS: instance has IAM role attached (i-041e82e77928de8ef)
+CHECK: resolve instance profile name
+PASS: instance profile = taaops_ec2_instance_profile
+CHECK: resolve role name from instance profile
+PASS: role name = taaops_ec2_role
+CHECK: role has Secrets Manager actions (managed/inline)
+PASS: role allows Secrets Manager actions (taaops_ec2_role)
+INFO: managed policy -> arn:aws:iam::015195098145:policy/ec2_read_db_secret_policy: secretsmanager:GetSecretValue secretsmanager:us
+INFO: inline policy actions: none
+SKIP: remote checks (set RUN_REMOTE_CHECKS=true on EC2 to run 6-8)
+SKIP: optional guardrails (set RUN_OPTIONAL_GUARDS=true to run 9-10)
+SKIP: info checks (set RUN_INFO_CHECKS=true to run additional AWS CLI queries)
+SKIP: post-apply checks (set RUN_POST_APPLY_CHECKS=true to run)

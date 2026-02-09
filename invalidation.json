@@ -1,0 +1,7 @@
+{
+  "Paths": {
+    "Quantity": 1,
+    "Items": ["/static/example.txt"]
+  },
+  "CallerReference": "manual-$(Get-Date -Format s)"
+}

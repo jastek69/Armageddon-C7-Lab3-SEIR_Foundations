@@ -1,0 +1,23 @@
+{
+  "gate": "network_db",
+  "timestamp_utc": "2026-01-26T06:55:41Z",
+  "region": "us-west-2",
+  "instance_id": "i-0cff400cc4f896081",
+  "db_id": "taaops-rds",
+  "engine": "mysql",
+  "db_port": "3306",
+  "publicly_accessible": "False",
+  "ec2_security_groups": "sg-0a75d3099e408f86c",
+  "rds_security_groups": "sg-02836f3d088e014e2",
+  "db_subnet_group": "default-vpc-0650bb80688d52180",
+  "toggles": {
+    "check_private_subnets": true
+  },
+  "status": "FAIL",
+  "exit_code": 2,
+  "details": [
+"PASS: aws sts get-caller-identity succeeded (credentials OK).\nPASS: RDS instance exists (taaops-rds).\nPASS: RDS is not publicly accessible (PubliclyAccessible=False).\nINFO: using DB_PORT override = 3306.\nPASS: EC2 security groups resolved (i-0cff400cc4f896081): sg-0a75d3099e408f86c\nPASS: RDS security groups resolved (taaops-rds): sg-02836f3d088e014e2\nPASS: RDS SG allows DB port 3306 from EC2 SG (SG-to-SG ingress present).\nINFO: DB subnet group (default-vpc-0650bb80688d52180) subnets: subnet-0cd5c1d1b24079f3b	subnet-07136d058ea837168	subnet-03c6fe3b99ebd332b	subnet-0dc5fac1cee796b7d	subnet-06e93cba7fdd7bcef	subnet-07b202a38fe1de428\nPASS: subnet subnet-03c6fe3b99ebd332b shows no IGW route (private check OK).\nPASS: subnet subnet-0dc5fac1cee796b7d shows no IGW route (private check OK).\nPASS: subnet subnet-07b202a38fe1de428 shows no IGW route (private check OK)."],
+  "warnings": [],
+  "failures": [
+"FAIL: subnet subnet-0cd5c1d1b24079f3b has IGW route via igw-0d0d38518fd0651a5 (not private).\nFAIL: subnet subnet-07136d058ea837168 has IGW route via igw-0d0d38518fd0651a5 (not private).\nFAIL: subnet subnet-06e93cba7fdd7bcef has IGW route via igw-0d0d38518fd0651a5 (not private)."]
+}

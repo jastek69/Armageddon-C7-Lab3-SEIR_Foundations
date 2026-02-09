@@ -1,0 +1,64 @@
+Lab 3B — Japan Medical
+Audit Evidence & Regulator-Ready Logging (APPI reporting)
+
+🎯 Objective
+What students make in this lab is not a “system,” but a proof (proof).
+ PHI is stored only in Tokyo (ap-northeast-1) (APPI's way of thinking) 
+ São Paulo (sa-east-1) is just calculation (compute)
+ Make it possible to show “who, when, what, and where” as evidence in a form that can be shown to an auditor
+ Combine CloudFront/WAF/CloudTrail/logs into “one evidence pack”
+ Pick up a beautiful woman
+
+🧠 The Compliance Audit Principle
+In the regulated industry, “being able to prove” wins over “moving.”
+And global access ≠ global storage.
+
+What “Good Evidence” Looks Like (What Auditors Actually Want)
+The things I want about auditing, legality, and security are roughly these 6 things:
+ 1. Data residency proof
+ That RDS is in Tokyo
+ There is no DB in the cross-region
+ 
+ 2. Access trail
+ Who hit the API (not including personal information)
+ 
+ 3. Change trail
+ Who changed security settings (CloudTrail)
+ 
+ 4. Network Corridor Proof
+ The route from São Paulo to Tokyo is TGW
+ 
+ 5. Edge security proof
+ CloudFront + WAF is in the front row, and ALB is directly closed
+ 
+ 6. Retention/immutability posture
+ Audit logs must be stored in an untampered location (S3+ versioning, etc.)
+
+Required Services (Lab 3B control plane)
+1) CloudTrail (change evidence)
+ CloudTrail Event History allows you to view management events for 90 days (available by default) 
+ Furthermore, if a “Trail” is created, long-term storage is possible in S3
+ CloudTrail has types such as management events/data events/insights (management events are the default) 
+
+Lab requirements: Being able to take “trails” in both Tokyo and São Paulo (at least management events).
+
+2) CloudFront logs (Edge access evidence)
+ CloudFront standard logs record viewer requests 
+ Can you prove hit/miss/refreshHit with x-edge-result-type 
+
+Lab Requirements:
+Include evidence showing “Direct ALB is closed and only via CloudFront” into the audit pack
+
+3) WAF logs (security evidence)
+ WAF logs can be sent to Firehose and can also be sent to CloudWatch Logs/S3 
+ If you send to SIEM, Firehose is on-site 
+
+Lab Request: Logs or aggregates that can prove WAF's Allow/Block
+
+4) VPC Flow Logs/TGW path evidence (Network Corridor Proof)
+ (This is the part that proves “the correctness of the design”)
+ When using Flow Logs: Can be treated as metadata that does not include PHI
+ The existence of TGW routes and attachments can be proven with CLI
+
+    
+
