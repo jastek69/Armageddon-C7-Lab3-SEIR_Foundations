@@ -1,0 +1,11 @@
+chmod +x run_all_gates.sh
+
+ORIGIN_REGION="$(terraform output -raw origin_region)" \
+CF_DISTRIBUTION_ID="$(terraform output -raw cloudfront_distribution_id)" \
+DOMAIN_NAME="$(terraform output -raw domain_name)" \
+ROUTE53_ZONE_ID="$(terraform output -raw route53_zone_id)" \
+ACM_CERT_ARN="$(terraform output -raw cloudfront_acm_cert_arn)" \
+WAF_WEB_ACL_ARN="$(terraform output -raw waf_web_acl_arn)" \
+LOG_BUCKET="$(terraform output -raw log_bucket)" \
+ORIGIN_SG_ID="$(terraform output -raw origin_sg_id)" \
+./run_all_gates.sh
