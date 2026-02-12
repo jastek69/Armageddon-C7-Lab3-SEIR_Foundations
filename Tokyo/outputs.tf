@@ -45,7 +45,7 @@ output "database_security_group_id" {
 
 # TGW PEERING OUTPUTS
 output "tokyo_sao_peering_id" {
-  value       = aws_ec2_transit_gateway_peering_attachment.tokyo_to_sao_peering.id
+  value       = try(aws_ec2_transit_gateway_peering_attachment.tokyo_to_sao_peering[0].id, null)
   description = "TGW peering attachment ID from Tokyo to São Paulo - for São Paulo accepter"
 }
 

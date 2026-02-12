@@ -42,7 +42,7 @@ LAB3/
 │   ├── waf.tf
 │   ├── outputs.tf
 │   └── backend.tf
-├── tokyo/                     # Tokyo region (primary + secure services)
+├── Tokyo/                     # Tokyo region (primary + secure services)
 │   ├── main.tf               # VPC, TGW hub, ALB, EC2, modules
 │   ├── database.tf           # Aurora MySQL cluster
 │   ├── global-iam.tf         # Cross-region IAM roles
@@ -55,6 +55,8 @@ LAB3/
 │   ├── outputs.tf            # Outputs for remote state
 │   ├── variables.tf          # Region-specific variables
 │   └── backend.tf            # S3 remote state config
+├── terraform_startup.sh      # Apply wrapper (Tokyo -> global -> saopaulo)
+├── terraform_destroy.sh      # Destroy wrapper (global -> Tokyo -> saopaulo)
 └── modules/                  # Shared reusable modules
     ├── regional-iam/         # IAM roles and policies
     ├── regional-monitoring/  # CloudWatch and SNS
@@ -100,50 +102,74 @@ São Paulo App Servers → São Paulo TGW → TGW Peering → Tokyo TGW → Toky
 4. Update backend configurations with actual bucket names
 
 ### State Locking Options
-Terraform supports two backend locking modes for S3 state:
-- **DynamoDB locking** (`dynamodb_table`): Uses a DynamoDB table to coordinate locks. Best for team or CI/CD usage.
-- **S3 lock file** (`use_lockfile = true`): Uses a lock file in the state bucket. Simpler, but less robust for concurrent runs.
+Default backend mode in this repo uses S3 lock files (`use_lockfile = true`).
 
-Switching between them:
-1. Update the backend block in each stack's `backend.tf`.
-  - DynamoDB: `dynamodb_table = "taaops-terraform-state-lock"`
-  - Lock file: `use_lockfile = true`
-2. Reinitialize the backend:
-  - `terraform init -reconfigure`
-
-Note: Only configure one locking method at a time.
-
-### Step 1: Deploy Tokyo Infrastructure
+Optional activation (team/CI): enable DynamoDB locking.
+1. Create the lock table in both regions:
 ```bash
-cd tokyo/
-# Update backend.tf with your S3 bucket details
-# Update variables.tf with your key pair name
-terraform init
-terraform plan
-terraform apply
+aws dynamodb create-table \
+  --table-name taaops-terraform-state-lock \
+  --attribute-definitions AttributeName=LockID,AttributeType=S \
+  --key-schema AttributeName=LockID,KeyType=HASH \
+  --billing-mode PAY_PER_REQUEST \
+  --region ap-northeast-1
+
+aws dynamodb create-table \
+  --table-name taaops-terraform-state-lock \
+  --attribute-definitions AttributeName=LockID,AttributeType=S \
+  --key-schema AttributeName=LockID,KeyType=HASH \
+  --billing-mode PAY_PER_REQUEST \
+  --region sa-east-1
+```
+2. Add this to each backend: `Tokyo/backend.tf`, `global/backend.tf`, `saopaulo/backend.tf`
+```hcl
+dynamodb_table = "taaops-terraform-state-lock"
+```
+3. Reinitialize:
+```bash
+(cd Tokyo && terraform init -reconfigure)
+(cd global && terraform init -reconfigure)
+(cd saopaulo && terraform init -reconfigure)
 ```
 
-### Step 2: Deploy Global Infrastructure
+Note: Use one locking method at a time (`use_lockfile` or `dynamodb_table`).
+
+### Deployment (Recommended)
+Run from `LAB3` root:
 ```bash
-cd ../global/
-# Update backend.tf with your S3 bucket details
-terraform init
-terraform plan
-terraform apply
+bash ./terraform_startup.sh
 ```
 
-### Step 3: Deploy São Paulo Infrastructure  
+Deployment order in script:
+1. `Tokyo`
+2. `global`
+3. `saopaulo`
+
+### Destroy (Recommended)
+Run from `LAB3` root:
 ```bash
-cd ../saopaulo/
-# Update backend.tf with your S3 bucket details
-# Update variables.tf with your key pair name
-# Ensure Tokyo deployment completed first
-terraform init
-terraform plan
-terraform apply
+bash ./terraform_destroy.sh
 ```
 
-### Step 3: Verify Connectivity
+Destroy order in script:
+1. `global`
+2. `Tokyo`
+3. `saopaulo`
+
+### Manual Alternative
+```bash
+# Apply
+(cd Tokyo && terraform init -upgrade && terraform plan && terraform apply)
+(cd global && terraform init -upgrade && terraform plan && terraform apply)
+(cd saopaulo && terraform init -upgrade && terraform plan && terraform apply)
+
+# Destroy
+(cd global && terraform destroy)
+(cd Tokyo && terraform destroy)
+(cd saopaulo && terraform destroy)
+```
+
+### Verify Connectivity
 ```bash
 # Test database connectivity from São Paulo instances
 # Check TGW route tables

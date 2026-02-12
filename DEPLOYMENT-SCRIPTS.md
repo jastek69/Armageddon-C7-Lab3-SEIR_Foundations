@@ -2,14 +2,56 @@
 
 ## 🚀 Quick Start
 
+Run these from the `LAB3` repository root (`SEIR_Foundations/LAB3`).
+
+Note on naming:
+- This repo's apply wrapper is `terraform_startup.sh`.
+- If you renamed/copied it to `terraform_apply.sh`, run it the same way.
+
 ### Deploy Everything
 ```bash
-./terraform_startup.sh
+bash ./terraform_startup.sh
+# or (if you created it)
+bash ./terraform_apply.sh
 ```
 
 ### Destroy Everything  
 ```bash
-./terraform_destroy.sh
+bash ./terraform_destroy.sh
+```
+
+### Optional: Activate DynamoDB State Locking
+Default backend mode in this repo uses S3 lock files (`use_lockfile = true`).
+DynamoDB locking is optional and can be activated when needed (team/CI use).
+
+```bash
+# Create lock table in Tokyo region
+aws dynamodb create-table \
+  --table-name taaops-terraform-state-lock \
+  --attribute-definitions AttributeName=LockID,AttributeType=S \
+  --key-schema AttributeName=LockID,KeyType=HASH \
+  --billing-mode PAY_PER_REQUEST \
+  --region ap-northeast-1
+
+# Create lock table in Sao Paulo region
+aws dynamodb create-table \
+  --table-name taaops-terraform-state-lock \
+  --attribute-definitions AttributeName=LockID,AttributeType=S \
+  --key-schema AttributeName=LockID,KeyType=HASH \
+  --billing-mode PAY_PER_REQUEST \
+  --region sa-east-1
+```
+
+Then add this line to each backend block (`Tokyo/backend.tf`, `global/backend.tf`, `saopaulo/backend.tf`):
+```hcl
+dynamodb_table = "taaops-terraform-state-lock"
+```
+
+Then reinitialize each stack backend:
+```bash
+(cd Tokyo && terraform init -reconfigure)
+(cd global && terraform init -reconfigure)
+(cd saopaulo && terraform init -reconfigure)
 ```
 
 ## 📋 Script Overview
@@ -17,30 +59,29 @@
 ### `terraform_startup.sh`
 **Deploys the complete LAB3 multi-region architecture in optimal sequence:**
 
-1. **🔧 DynamoDB State Locking** - Creates state lock tables in both regions
-2. **🏯 Tokyo Region** - Primary hub with database, VPC, TGW hub, ALB
+1. **🏯 Tokyo Region** - Primary hub with database, VPC, TGW hub, ALB
+2. **🌐 Global Stack** - CloudFront, Route53, and global edge controls
 3. **🌴 São Paulo Region** - Compute spoke with VPC, TGW spoke, ALB  
-4. **🔍 Verification** - Comprehensive health checks and status reporting
+4. **🔍 Summary Outputs** - Collects key TGW/ALB/CloudFront outputs
 
 **Features:**
-- ✅ Proper deployment sequencing (Tokyo → São Paulo)
+- ✅ Proper deployment sequencing (Tokyo → Global → São Paulo)
 - ✅ Transit Gateway peering wait times (120s)
 - ✅ Comprehensive output collection
-- ✅ ALB endpoint health testing
 - ✅ Error handling with line number reporting
-- ✅ Infrastructure status dashboard
+- ✅ Fails if required summary outputs are missing
 
 ### `terraform_destroy.sh`
-**Safely destroys infrastructure in reverse dependency order:**
+**Safely destroys infrastructure in a remote-state-safe order:**
 
-1. **🌴 São Paulo** - Destroys spoke region first (dependent resources)
-2. **🏯 Tokyo** - Destroys hub region second (core resources)  
-3. **🔧 DynamoDB** - Optional cleanup of state locking tables
+1. **🔧 Global** - Removes CloudFront/Route53 dependencies
+2. **🏯 Tokyo** - Destroys hub region while São Paulo state outputs still exist
+3. **🌴 São Paulo** - Destroys spoke region last
 4. **🧹 Cleanup** - Removes plan files and verifies destruction
 
 **Safety Features:**
 - ✅ Confirmation prompts before destruction
-- ✅ Proper dependency order (spoke → hub)
+- ✅ Proper dependency order (global → hub → spoke)
 - ✅ Resource verification after destruction
 - ✅ S3 state bucket preservation (with manual cleanup instructions)
 
@@ -49,40 +90,36 @@
 ### Standard Deployment
 ```bash
 # Deploy complete LAB3 infrastructure
-./terraform_startup.sh
+bash ./terraform_startup.sh
 
 # Expected output:
-# ✅ DynamoDB state locking ready
-# ✅ Tokyo region deployed (VPC, TGW, Aurora, ALB)  
-# ✅ São Paulo region deployed (VPC, TGW, ALB)
-# ✅ Multi-region connectivity verified
+# === Deploying Tokyo ===
+# === Deploying global ===
+# === Deploying saopaulo ===
+# LAB3 deployment complete.
+# (With DynamoDB locking enabled, Terraform will also show lock acquire/release messages.)
 ```
 
 ### Cleanup Deployment
 ```bash
 # Destroy all infrastructure
-./terraform_destroy.sh
+bash ./terraform_destroy.sh
 
 # Prompts:
 # - Confirm destruction: yes
-# - Keep DynamoDB tables: no (if you want full cleanup)
 ```
 
 ### Manual Steps (if needed)
 ```bash
-# Individual region deployment
-cd tokyo/
-terraform init && terraform apply
+# Individual stack deployment
+(cd Tokyo && terraform init && terraform apply)
+(cd global && terraform init && terraform apply)
+(cd saopaulo && terraform init && terraform apply)
 
-cd ../saopaulo/  
-terraform init && terraform apply
-
-# Individual region destruction
-cd saopaulo/
-terraform destroy
-
-cd ../tokyo/
-terraform destroy
+# Individual stack destruction (match script order)
+(cd global && terraform destroy)
+(cd Tokyo && terraform destroy)
+(cd saopaulo && terraform destroy)
 ```
 
 ## 🔧 Prerequisites
@@ -94,19 +131,22 @@ Before running the scripts:
    ```hcl
    bucket = "your-actual-bucket-name-tokyo"
    ```
-3. **Create S3 buckets** for state storage (or let scripts create them)
-4. **Terraform >= 1.3** installed
+3. **Create S3 buckets** for state storage (scripts do not create state buckets)
+4. **Optional:** enable DynamoDB locking using the section above
+5. **Terraform >= 1.3** installed
 
 ## 📊 Script Output Guide
 
 ### Successful Deployment Shows:
 ```
-✅ Tokyo region deployment complete
-✅ São Paulo region deployment complete  
-TGW Peering Status: available
-✅ Tokyo ALB responding
-✅ São Paulo ALB responding
-✅ Multi-region infrastructure deployed successfully!
+=== Deploying Tokyo ===
+=== Deploying global ===
+=== Deploying saopaulo ===
+=== Deployment summary ===
+Tokyo TGW:             tgw-...
+Global CloudFront ID:  E...
+Sao Paulo TGW:         tgw-...
+LAB3 deployment complete.
 ```
 
 ### Common Issues and Solutions:
@@ -115,8 +155,10 @@ TGW Peering Status: available
 |-------|-------|----------|
 | `backend not configured` | S3 bucket doesn't exist | Create bucket or update backend.tf |
 | `DynamoDB table not found` | State locking not set up | Run DynamoDB setup step |
+| `Error acquiring the state lock` | Stale/active lock present | Wait, coordinate, or `terraform force-unlock <LOCK_ID>` |
 | `TGW peering failed` | Tokyo not deployed first | Deploy Tokyo before São Paulo |
 | `ALB not responding` | Resources still initializing | Wait 5-10 minutes and retry |
+| `terraform_destroy.sh: command not found` | Script executed without `./` or from wrong folder | `cd` to `LAB3` and run `bash ./terraform_destroy.sh` |
 
 ## ⚡ Advanced Usage
 
@@ -138,7 +180,7 @@ echo "🧪 Custom health check..."
 **Selective deployment:**
 ```bash
 # Deploy only Tokyo
-cd tokyo/ && terraform init && terraform apply
+cd Tokyo/ && terraform init && terraform apply
 
 # Deploy only São Paulo (requires Tokyo first)
 cd saopaulo/ && terraform init && terraform apply
@@ -155,7 +197,7 @@ cd saopaulo/ && terraform init && terraform apply
     
 - name: Cleanup on failure
   if: failure()
-  run: ./terraform_destroy.sh
+  run: bash ./terraform_destroy.sh
 ```
 
 ### Pipeline Stages

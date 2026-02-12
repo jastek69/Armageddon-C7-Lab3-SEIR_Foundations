@@ -396,6 +396,30 @@ taaops-armageddon-lab-policy
   - `firehose` (WAF -> Kinesis Firehose -> S3). Use this for S3 storage (WAF does not support direct S3 logging).
 - `waf_log_retention_days` controls log retention when using CloudWatch Logs.
 
+# Terraform Script Execution (LAB3)
+Run from `SEIR_Foundations/LAB3`:
+
+```bash
+bash ./terraform_startup.sh
+bash ./terraform_destroy.sh
+```
+
+Notes:
+- The apply wrapper in this repo is `terraform_startup.sh` (same role as `terraform_apply.sh`).
+- In Bash, `terraform_destroy.sh` without `./` fails with `command not found`.
+- If execute permissions are missing:
+
+```bash
+chmod +x terraform_startup.sh terraform_destroy.sh
+```
+
+PowerShell calling Bash:
+
+```powershell
+bash .\terraform_startup.sh
+bash .\terraform_destroy.sh
+```
+
 # Python Scripts (Shell Notes)
 If you run Python scripts from Git Bash on Windows, path conversion can break relative paths like `.\python\script.py` (it becomes `.pythonscript.py`). Use one of these instead:
 

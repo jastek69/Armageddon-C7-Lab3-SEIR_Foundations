@@ -4,11 +4,17 @@
 
 ```
 lab-3/
-├── tokyo/                    # 🏯 Tokyo Region (Primary - Data Authority)
+├── Tokyo/                    # 🏯 Tokyo Region (Primary - Data Authority)
 │   ├── main.tf              # Complete Lab 2 + TGW hub
 │   ├── outputs.tf            # Exposes TGW ID, VPC CIDR, RDS endpoint
 │   ├── variables.tf          # Tokyo-specific variables
 │   └── backend.tf            # Remote state configuration
+│
+├── global/                   # 🌐 Global Edge Stack (CloudFront/Route53)
+│   ├── main.tf
+│   ├── outputs.tf
+│   ├── data.tf
+│   └── backend.tf
 │
 ├── saopaulo/                 # 🌴 São Paulo Region (Compute Spoke)
 │   ├── main.tf              # Lab 2 minus DB + TGW spoke  
@@ -16,125 +22,99 @@ lab-3/
 │   ├── data.tf               # Reads Tokyo remote state
 │   └── backend.tf            # Remote state configuration
 │
-└── DEPLOYMENT_GUIDE.md      # This file
+├── terraform_startup.sh      # Apply wrapper (Tokyo -> global -> saopaulo)
+├── terraform_destroy.sh      # Destroy wrapper (global -> Tokyo -> saopaulo)
+└── DEPLOYMENT_GUIDE.md       # This file
 ```
 
 ## 🚀 **Deployment Sequence (IMPORTANT!)**
 
-### **Step 1: Setup Remote State Backend**
-Before deploying, create an S3 bucket for state management:
+### **Step 1: Setup Remote State Backends**
+Before deploying, ensure backend buckets exist (one per regional stack in this repo):
 
 ```bash
-# Create state bucket (run once)
-aws s3 mb s3://your-terraform-state-bucket --region ap-northeast-1
+# Tokyo state bucket
+aws s3 mb s3://taaops-terraform-state-tokyo --region ap-northeast-1
 
-# Optional: Create DynamoDB table for state locking (RECOMMENDED for teams)
-aws dynamodb create-table \
-    --table-name terraform-state-locks \
-    --attribute-definitions AttributeName=LockID,AttributeType=S \
-    --key-schema AttributeName=LockID,KeyType=HASH \
-    --billing-mode PAY_PER_REQUEST \
-    --region ap-northeast-1
+# Sao Paulo state bucket
+aws s3 mb s3://taaops-terraform-state-saopaulo --region sa-east-1
+```
 
-# For São Paulo region
+Optional (team/CI): enable DynamoDB locking in addition to S3 lock files.
+
+```bash
+# Tokyo-region lock table
 aws dynamodb create-table \
-    --table-name terraform-state-locks \
-    --attribute-definitions AttributeName=LockID,AttributeType=S \
-    --key-schema AttributeName=LockID,KeyType=HASH \
-    --billing-mode PAY_PER_REQUEST \
-    --region sa-east-1
+  --table-name taaops-terraform-state-lock \
+  --attribute-definitions AttributeName=LockID,AttributeType=S \
+  --key-schema AttributeName=LockID,KeyType=HASH \
+  --billing-mode PAY_PER_REQUEST \
+  --region ap-northeast-1
+
+# Sao Paulo-region lock table
+aws dynamodb create-table \
+  --table-name taaops-terraform-state-lock \
+  --attribute-definitions AttributeName=LockID,AttributeType=S \
+  --key-schema AttributeName=LockID,KeyType=HASH \
+  --billing-mode PAY_PER_REQUEST \
+  --region sa-east-1
 ```
 
 ### **Step 2: Configure Backend Settings**
 
-Update backend configurations in both regions:
+Current backend default is S3 lock files (`use_lockfile = true`).  
+To activate DynamoDB locking, add `dynamodb_table = "taaops-terraform-state-lock"` in:
+- `Tokyo/backend.tf`
+- `global/backend.tf`
+- `saopaulo/backend.tf`
 
-**tokyo/backend.tf:**
-```hcl
-terraform {
-  backend "s3" {
-    bucket         = "your-terraform-state-bucket"
-    key            = "tokyo/terraform.tfstate"
-    region         = "ap-northeast-1"
-    encrypt        = true
-    dynamodb_table = "terraform-state-locks"  # Enables state locking
-  }
-}
-```
-
-**saopaulo/backend.tf:**
-```hcl
-terraform {
-  backend "s3" {
-    bucket         = "your-terraform-state-bucket"  
-    key            = "saopaulo/terraform.tfstate"
-    region         = "sa-east-1"
-    encrypt        = true
-    dynamodb_table = "terraform-state-locks"  # Enables state locking
-  }
-}
-``` 
-    dynamodb_table = "terraform-state-lock"
-    encrypt        = true
-  }
-}
-```
-
-**saopaulo/backend.tf:**
-```hcl
-terraform {
-  backend "s3" {
-    bucket         = "your-terraform-state-bucket"
-    key            = "saopaulo/terraform.tfstate"
-    region         = "sa-east-1"
-    dynamodb_table = "terraform-state-lock" 
-    encrypt        = true
-  }
-}
-```
-
-### **Step 3: Deploy Tokyo (Primary Region)**
+After backend changes:
 
 ```bash
-# Navigate to Tokyo
-cd tokyo/
-
-# Initialize and plan
-terraform init
-terraform plan
-
-# Deploy Tokyo infrastructure
-terraform apply
-
-# Note the outputs - São Paulo will need these
-terraform output tokyo_transit_gateway_id
-terraform output tokyo_vpc_cidr
-terraform output rds_endpoint
+(cd Tokyo && terraform init -reconfigure)
+(cd global && terraform init -reconfigure)
+(cd saopaulo && terraform init -reconfigure)
 ```
 
-### **Step 4: Configure São Paulo Variables**
+### **Step 3: Deploy with Wrapper Script (Recommended)**
 
-Update `saopaulo/variables.tf` with your state bucket:
-
-```hcl
-variable "tokyo_state_bucket" {
-  description = "S3 bucket containing Tokyo Terraform state"
-  default     = "your-terraform-state-bucket"  # UPDATE THIS
-}
-```
-
-### **Step 5: Deploy São Paulo (Dependent Region)**
+Run from LAB3 root:
 
 ```bash
-# Navigate to São Paulo  
-cd ../saopaulo/
+bash ./terraform_startup.sh
+```
 
-# Initialize and plan
-terraform init
-terraform plan
+Notes:
+- This repo's apply wrapper is `terraform_startup.sh` (same role as `terraform_apply.sh`).
+- Deployment order is `Tokyo -> global -> saopaulo`.
 
-# Deploy São Paulo infrastructure
-terraform apply
+### **Step 4: Manual Deployment (Alternative)**
+
+```bash
+(cd Tokyo && terraform init -upgrade && terraform plan && terraform apply)
+(cd global && terraform init -upgrade && terraform plan && terraform apply)
+(cd saopaulo && terraform init -upgrade && terraform plan && terraform apply)
+```
+
+### **Step 5: Destroy Workflow**
+
+Recommended:
+
+```bash
+bash ./terraform_destroy.sh
+```
+
+Script destroy order is remote-state-safe:
+1. `global`
+2. `Tokyo`
+3. `saopaulo`
+
+Manual alternative:
+
+```bash
+(cd global && terraform destroy)
+(cd Tokyo && terraform destroy)
+(cd saopaulo && terraform destroy)
 ```
 
 ## 🔗 **Inter-Region Dependencies**
@@ -197,13 +177,13 @@ mysql -h <tokyo-rds-endpoint> -u admin -p taaopsdb
 
 ### **Destroy Infrastructure:**
 ```bash
-# ALWAYS destroy São Paulo first (dependent)
-cd saopaulo/
-terraform destroy
+# Preferred: use wrapper from LAB3 root
+bash ./terraform_destroy.sh
 
-# Then destroy Tokyo (primary)  
-cd ../tokyo/
-terraform destroy
+# Manual fallback (same order as script)
+(cd global && terraform destroy)
+(cd Tokyo && terraform destroy)
+(cd saopaulo && terraform destroy)
 ```
 
 ## 🔒 **DynamoDB State Locking Deep Dive**
@@ -254,15 +234,18 @@ Lock Info:
 
 **Option 1: Use Terraform (Recommended)**
 ```bash
-# Create the setup file for both regions
-terraform apply setup-dynamodb-locking.tf
+# Tokyo (from LAB3 root)
+(cd Tokyo && terraform init -backend=false && terraform apply -target=aws_dynamodb_table.terraform_lock)
+
+# Sao Paulo (from LAB3 root)
+(cd saopaulo && terraform init -backend=false && terraform apply -target=aws_dynamodb_table.terraform_lock)
 ```
 
 **Option 2: Manual AWS CLI Setup**
 ```bash
 # Tokyo region table
 aws dynamodb create-table \
-  --table-name terraform-state-locks \
+  --table-name taaops-terraform-state-lock \
   --attribute-definitions AttributeName=LockID,AttributeType=S \
   --key-schema AttributeName=LockID,KeyType=HASH \
   --billing-mode PAY_PER_REQUEST \
@@ -271,7 +254,7 @@ aws dynamodb create-table \
 
 # São Paulo region table
 aws dynamodb create-table \
-  --table-name terraform-state-locks \
+  --table-name taaops-terraform-state-lock \
   --attribute-definitions AttributeName=LockID,AttributeType=S \
   --key-schema AttributeName=LockID,KeyType=HASH \
   --billing-mode PAY_PER_REQUEST \
@@ -284,11 +267,11 @@ aws dynamodb create-table \
 Verify your locking works:
 ```bash
 # Terminal 1: Start long-running command
-cd tokyo/
+cd Tokyo/
 terraform plan -detailed-exitcode
 
 # Terminal 2: Try concurrent operation (should wait)
-cd tokyo/  
+cd Tokyo/  
 terraform plan
 # Expected: "Error locking state: ConditionalCheckFailedException"
 ```
@@ -299,12 +282,12 @@ terraform plan
 ```bash
 # View current locks
 aws dynamodb scan \
-  --table-name terraform-state-locks \
+  --table-name taaops-terraform-state-lock \
   --region ap-northeast-1
 
 # Check specific state file lock
 aws dynamodb get-item \
-  --table-name terraform-state-locks \
+  --table-name taaops-terraform-state-lock \
   --key '{"LockID":{"S":"your-bucket/tokyo/terraform.tfstate-md5"}}' \
   --region ap-northeast-1
 ```
@@ -354,8 +337,8 @@ Add these permissions to your Terraform execution role:
         "dynamodb:DeleteItem"
       ],
       "Resource": [
-        "arn:aws:dynamodb:ap-northeast-1:*:table/terraform-state-locks",
-        "arn:aws:dynamodb:sa-east-1:*:table/terraform-state-locks"
+        "arn:aws:dynamodb:ap-northeast-1:*:table/taaops-terraform-state-lock",
+        "arn:aws:dynamodb:sa-east-1:*:table/taaops-terraform-state-lock"
       ]
     }
   ]
@@ -375,12 +358,12 @@ Add these permissions to your Terraform execution role:
 ```bash
 # Check if table exists
 aws dynamodb describe-table \
-  --table-name terraform-state-locks \
+  --table-name taaops-terraform-state-lock \
   --region ap-northeast-1
 
 # View table contents
 aws dynamodb scan \
-  --table-name terraform-state-locks \
+  --table-name taaops-terraform-state-lock \
   --region ap-northeast-1 \
   --max-items 5
 
@@ -408,7 +391,7 @@ terraform apply -lock-timeout=10m -input=false plan.tfplan
 ```bash
 # Enable point-in-time recovery on DynamoDB table
 aws dynamodb update-continuous-backups \
-  --table-name terraform-state-locks \
+  --table-name taaops-terraform-state-lock \
   --point-in-time-recovery-specification PointInTimeRecoveryEnabled=true \
   --region ap-northeast-1
 ```

@@ -307,6 +307,8 @@ resource "aws_ec2_transit_gateway_vpc_attachment" "tokyo_vpc_attachment" {
 
 # Inter-Region Peering to São Paulo
 resource "aws_ec2_transit_gateway_peering_attachment" "tokyo_to_sao_peering" {
+  count = can(data.terraform_remote_state.saopaulo.outputs.saopaulo_transit_gateway_id) ? 1 : 0
+
   transit_gateway_id      = aws_ec2_transit_gateway.shinjuku_tgw01.id
   peer_transit_gateway_id = data.terraform_remote_state.saopaulo.outputs.saopaulo_transit_gateway_id
   peer_region             = "sa-east-1"

@@ -1,6 +1,6 @@
 ﻿#!/usr/bin/env bash
 # LAB3 multi-stack Terraform destroy
-# Order: Global -> Sao Paulo -> Tokyo
+# Order: Global -> Tokyo -> Sao Paulo
 # Maintainer note: active stacks are in `Tokyo/`, `global/`, `saopaulo/`; legacy root Terraform files are in `archive/root-terraform-from-root/`.
 
 set -euo pipefail
@@ -31,11 +31,11 @@ sleep 5
 # Stage 1: Global (must go first due origin/CloudFront dependencies)
 run_destroy "global" "global-destroy.tfplan"
 
-# Stage 2: Sao Paulo
-run_destroy "saopaulo" "saopaulo-destroy.tfplan"
-
-# Stage 3: Tokyo
+# Stage 2: Tokyo (must go before Sao Paulo to keep remote state outputs available)
 run_destroy "Tokyo" "tokyo-destroy.tfplan"
+
+# Stage 3: Sao Paulo
+run_destroy "saopaulo" "saopaulo-destroy.tfplan"
 
 # Stage 4: Local cleanup
 echo ""

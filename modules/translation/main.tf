@@ -26,6 +26,7 @@ locals {
 # Input bucket - where original incident reports are uploaded
 resource "aws_s3_bucket" "input_bucket" {
   bucket = var.input_bucket_name != "" ? var.input_bucket_name : "${local.name_prefix}-input"
+  force_destroy = true
 
   tags = merge(var.common_tags, {
     Name        = "${local.name_prefix}-input"
@@ -37,6 +38,7 @@ resource "aws_s3_bucket" "input_bucket" {
 # Output bucket - where translated reports are stored temporarily  
 resource "aws_s3_bucket" "output_bucket" {
   bucket = var.output_bucket_name != "" ? var.output_bucket_name : "${local.name_prefix}-output"
+  force_destroy = true
 
   tags = merge(var.common_tags, {
     Name        = "${local.name_prefix}-output"
